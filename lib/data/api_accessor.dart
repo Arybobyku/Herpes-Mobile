@@ -1,5 +1,5 @@
 import 'package:chopper/chopper.dart';
-import 'package:herpes_identification/helper/constants.dart';
+import 'package:herpes_identification/data/constants/constants.dart';
 
 part 'api_accessor.chopper.dart';
 
@@ -11,6 +11,12 @@ abstract class ApiAccessor extends ChopperService {
     Constants.headerAcceptText: Constants.headerApplicationJsonValue
   })
   Future<Response> getListCase();
+
+  @Get(path: "/api/casePivot", headers: {
+    Constants.headerContentTypeText: Constants.headerApplicationJsonValue,
+    Constants.headerAcceptText: Constants.headerApplicationJsonValue
+  })
+  Future<Response> getAllCase();
 
   @Get(path: "/api/sympthon", headers: {
     Constants.headerContentTypeText: Constants.headerApplicationJsonValue,

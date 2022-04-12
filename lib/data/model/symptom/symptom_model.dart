@@ -10,4 +10,5 @@ class SymptomModel{
   SymptomModel(this.id,this.name);
 
   factory SymptomModel.fromJson(Map<String, dynamic> json)=>_$SymptomModelFromJson(json);
+  Map<String, dynamic> toJson()=>_$SymptomModelToJson(this);
 }

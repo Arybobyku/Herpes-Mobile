@@ -29,6 +29,18 @@ class _$ApiAccessor extends ApiAccessor {
   }
 
   @override
+  Future<Response<dynamic>> getAllCase() {
+    final $url = '/api/casePivot';
+    final $headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+
+    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<dynamic>> getListSymptom() {
     final $url = '/api/sympthon';
     final $headers = {
