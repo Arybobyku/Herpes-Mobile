@@ -18,7 +18,7 @@ class _ImageDetectionState extends State<ImageDetection> {
   List _result = [];
   String _confidence = "";
   String _name = "";
-  String _numbers = "";
+  final String _numbers = "";
 
   loadModel() async {
     var resultant = await Tflite.loadModel(

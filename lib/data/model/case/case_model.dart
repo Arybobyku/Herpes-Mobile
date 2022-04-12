@@ -1,11 +1,12 @@
-import 'package:herpes_identification/data/model/case/case_detail_model.dart';
-import 'package:herpes_identification/data/model/case/case_solution_model.dart';
+import 'package:herpes_identification/data/model/case/case_solution/case_solution_model.dart';
 import 'package:herpes_identification/data/model/disease/disease_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'case_detail/case_detail_model.dart';
+
 part 'case_model.g.dart';
 
-@JsonSerializable(nullable: true, ignoreUnannotated: true, explicitToJson: true)
+@JsonSerializable( ignoreUnannotated: true, explicitToJson: true)
 class CaseModel{
   @JsonKey(name: "id") int? id;
   @JsonKey(name: "confidence_level") int? confidenceLevel;

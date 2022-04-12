@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'case_detail_model.g.dart';
 
-@JsonSerializable(nullable: true, ignoreUnannotated: true, explicitToJson: true)
+@JsonSerializable(ignoreUnannotated: true, explicitToJson: true)
 class CaseDetailModel{
    @JsonKey(name: "sympthons") SymptomModel? symptoms;
 
