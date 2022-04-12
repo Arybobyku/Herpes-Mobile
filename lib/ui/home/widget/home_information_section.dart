@@ -1,14 +1,39 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:herpes_identification/data/model/case/case_model.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
+import 'package:herpes_identification/helper/text_network_error.dart';
 import 'package:herpes_identification/routes.dart';
+import 'package:herpes_identification/provider/home/home_bloc.dart';
 
 class HomeInformationSection extends StatelessWidget {
   const HomeInformationSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return state.optionFailureOrCase.match(
+          (t) => t.fold(
+            (l) => l.maybeWhen(
+              orElse:()=> const SizedBox(),
+              serverError: (error)=> TextNetworkError(message: error!),
+              noInternet: ()=> const TextNetworkError(message: "No Internet")
+            ),
+            (listCase) => body(cases: listCase),
+          ),
+          () => const Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget body({required IList<CaseModel> cases}) {
     return Container(
       padding: const EdgeInsets.all(20),
       width: double.infinity,
@@ -20,10 +45,10 @@ class HomeInformationSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children:  const [
+            children: const [
               Expanded(
                 child: Text(
-                  "Herpes di Indonesia",
+                  "Data Penyakit Herpes",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -34,22 +59,25 @@ class HomeInformationSection extends StatelessWidget {
               SizedBox(
                 height: 40,
                 width: 60,
-                child: Flag.fromString("ID",fit: BoxFit.cover,),
+                child: Flag.fromString(
+                  "ID",
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: const [
+            children: [
               Text(
-                "40",
-                style: TextStyle(
+                cases.length.toString(),
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 50,
                 ),
               ),
-              Text(
+              const Text(
                 " Kasus",
                 style: TextStyle(
                   color: Colors.white,
@@ -61,7 +89,7 @@ class HomeInformationSection extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           GestureDetector(
-            onTap: ()=>Get.toNamed(Routes.herpesInformationPage),
+            onTap: () => Get.toNamed(Routes.herpesInformationPage),
             child: Row(
               children: [
                 Expanded(
@@ -75,7 +103,10 @@ class HomeInformationSection extends StatelessWidget {
                     fontSize: 14,
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
               ],
             ),
           ),

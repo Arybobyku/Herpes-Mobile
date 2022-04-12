@@ -44,6 +44,8 @@ dependencies:
   chopper:
   json_annotation:
   get: ^4.6.1
+  get_it:
+  injectable:
   salomon_bottom_bar: ^3.2.0
   path_provider:
   path:
@@ -56,7 +58,8 @@ dependencies:
   freezed_annotation: ^1.0.0
   grouped_list: ^4.1.0
   fast_immutable_collections:
-
+  flutter_bloc:
+  bloc_concurrency:
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +69,7 @@ dev_dependencies:
   chopper_generator:
   json_serializable:
   freezed: ^1.0.2
+  injectable_generator: ^1.5.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
