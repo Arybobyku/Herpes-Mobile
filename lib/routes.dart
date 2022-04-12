@@ -1,4 +1,3 @@
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:get/get.dart';
 import 'package:herpes_identification/ui/herpes_information/herpes_information_page.dart';
 import 'package:herpes_identification/ui/history/history_page.dart';
