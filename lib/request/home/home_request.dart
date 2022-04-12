@@ -12,7 +12,8 @@ import 'package:provider/provider.dart';
 
 abstract class HomeRequest {
   Future<Either<ResponseError, IList<CaseModel>>> getListCase(
-      BuildContext context);
+    BuildContext context,
+  );
 }
 
 @LazySingleton(as: HomeRequest)

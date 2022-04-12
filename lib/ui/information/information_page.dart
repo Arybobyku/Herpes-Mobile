@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
 
-class InformationPage extends StatefulWidget {
+class InformationPage extends StatelessWidget {
   const InformationPage({Key? key}) : super(key: key);
 
-  @override
-  _InformationPageState createState() => _InformationPageState();
-}
-
-class _InformationPageState extends State<InformationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

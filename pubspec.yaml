@@ -60,6 +60,7 @@ dependencies:
   fast_immutable_collections:
   flutter_bloc:
   bloc_concurrency:
+  logger:
 
 dev_dependencies:
   flutter_test:
