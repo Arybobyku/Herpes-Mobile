@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:camera/camera.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:herpes_identification/helper/image_picker_helper.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:get/get.dart';
+import 'package:herpes_identification/helper/color_pallete.dart';
 import 'package:tflite/tflite.dart';
 
 class ImageDetection extends StatefulWidget {
@@ -13,30 +15,30 @@ class ImageDetection extends StatefulWidget {
 }
 
 class _ImageDetectionState extends State<ImageDetection> {
-  File? pickedImage;
-  bool isImageLoaded = false;
+  XFile imgPath = Get.arguments;
   List _result = [];
   String _confidence = "";
   String _name = "";
-  final String _numbers = "";
 
   loadModel() async {
     var resultant = await Tflite.loadModel(
         model: "assets/model_unquant.tflite", labels: "assets/labels.txt");
 
-    print("Result After Loading -------------------------------------- $resultant");
+    print(
+        "Result After Loading -------------------------------------- $resultant");
   }
 
   @override
   void initState() {
     super.initState();
 
-    loadModel().then((val){
+    loadModel().then((val) {
       setState(() {
-
+        applyModelOnImage(File(imgPath.path));
       });
     });
   }
+
   applyModelOnImage(File file) async {
     print("Loadinggg imageeeee");
     var res = await Tflite.runModelOnImage(
@@ -57,47 +59,73 @@ class _ImageDetectionState extends State<ImageDetection> {
     });
     print("Finishhhhh imageeeee");
   }
-  _doPhoto() async {
-    isImageLoaded = false;
-    File? image = await ImagePickerHelper()
-        .getImage(source: ImageSource.camera, imageQuality: 30);
-    setState(() {
-      pickedImage = File(image!.path);
-      isImageLoaded = true;
-      applyModelOnImage(image);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: ColorPalette.generalSecondaryColor,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _doPhoto();
-          },
+          backgroundColor: ColorPalette.generalSecondaryColor,
+          onPressed: () {},
+          child: const Icon(Icons.save),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              alignment: Alignment.center,
-              height: 350,
-              child: pickedImage != null
-                  ? Container(
-                height: 350,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: FileImage(File(pickedImage!.path)))),
-              )
-                  : Container(),
+            Expanded(
+              flex: 1,
+              child: headImageDetection(),
             ),
-            Text("Name : $_name \nConfidence : $_confidence")
+            Expanded(
+              flex: 2,
+              child: Container(
+                width: double.infinity,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                    color: ColorPalette.generalBackgroundColor),
+                child: Column(
+                  children: [
+                    Text(
+                      _name,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      _confidence,
+                      style: TextStyle(fontSize: 24),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Widget headImageDetection() {
+    return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        alignment: Alignment.center,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: FileImage(
+                File(imgPath.path),
+              ),
+            ),
+          ),
+        ));
   }
 }

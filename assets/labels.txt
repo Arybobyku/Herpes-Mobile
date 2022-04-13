@@ -1,2 +1,4 @@
-0 panu
-1 jamur
+0 Herpes Simplex
+1 Normal
+2 Varicella-zoster
+3 cytomegalovirus
