@@ -6,8 +6,9 @@ import 'injection.dart';
 
 Future<void> mainCommon() async{
   WidgetsFlutterBinding.ensureInitialized();
-   BlocOverrides.runZoned(
-        () => runApp(getIt<MyApp>()),
-    blocObserver: getIt<SimpleBlocObserver>(),
-  );
+  //  BlocOverrides.runZoned(
+  //       () => runApp(getIt<MyApp>()),
+  //   blocObserver: getIt<SimpleBlocObserver>(),
+  // );
+   runApp(getIt<MyApp>());
 }

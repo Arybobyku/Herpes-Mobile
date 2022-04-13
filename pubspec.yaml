@@ -61,6 +61,8 @@ dependencies:
   flutter_bloc:
   bloc_concurrency:
   logger:
+  camera:
+  animated_text_kit:
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:herpes_identification/ui/customCamera/camera.dart';
+import 'package:herpes_identification/ui/customCamera/preview.dart';
 import 'package:herpes_identification/ui/herpes_information/herpes_information_page.dart';
 import 'package:herpes_identification/ui/history/history_page.dart';
 import 'package:herpes_identification/ui/home/home_page.dart';
@@ -19,6 +21,8 @@ class Routes {
   static const String historyPage = "/historyPage";
   static const String questionPage = "/questionPage";
   static const String herpesInformationPage = "/herpesInformationPage";
+  static const String cameraScreen = "/cameraScreen";
+  static const String previewScreen = "/previewScreen";
 
   static final newRoutes = <GetPage>[
     GetPage(name: navigator, page:(){return const NavigatorPage();}),
@@ -29,5 +33,7 @@ class Routes {
     GetPage(name: historyPage, page:(){return const HistoryPage();}),
     GetPage(name: questionPage, page:(){return const QuestionPage();}),
     GetPage(name: herpesInformationPage, page:(){return const HerpesInformationPage();}),
+    GetPage(name: cameraScreen, page:(){return const CameraScreen();}),
+    GetPage(name: previewScreen, page:(){return const PreviewScreen();}),
   ];
 }
