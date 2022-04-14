@@ -18,7 +18,7 @@ class _$ApiAccessorNews extends ApiAccessorNews {
 
   @override
   Future<Response<dynamic>> getCategory(String category) {
-    final $url = 'top-headlines?country=id&pageSize=4';
+    final $url = 'top-headlines?country=id';
     final $params = <String, dynamic>{'category': category};
     final $headers = {
       'Content-Type': 'application/json',

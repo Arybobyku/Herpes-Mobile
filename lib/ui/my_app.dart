@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:herpes_identification/data/api_accessor.dart';
+import 'package:herpes_identification/data/api_accessor_news.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
 import 'package:herpes_identification/injection.dart';
 import 'package:herpes_identification/routes.dart';
@@ -21,6 +22,10 @@ class MyApp extends StatelessWidget {
         Provider(
           create: (_) => ApiAccessor.create(),
           dispose: (_, ApiAccessor service) => service.client.dispose(),
+        ),
+        Provider(
+          create: (_) => ApiAccessorNews.create(),
+          dispose: (_, ApiAccessorNews service) => service.client.dispose(),
         ),
         BlocProvider<LandingBloc>(
           create: (context) => getIt<LandingBloc>(),

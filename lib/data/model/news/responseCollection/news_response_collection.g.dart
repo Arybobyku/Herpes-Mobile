@@ -11,7 +11,8 @@ _$_NewsResponseCollection _$$_NewsResponseCollectionFromJson(
     _$_NewsResponseCollection(
       status: json['status'] as String,
       totalResults: json['totalResults'] as int,
-      articles: ArticleModel.fromJson(json['articles'] as Map<String, dynamic>),
+      articles: IList<ArticleModel>.fromJson(json['articles'],
+          (value) => ArticleModel.fromJson(value as Map<String, dynamic>)),
     );
 
 Map<String, dynamic> _$$_NewsResponseCollectionToJson(
@@ -19,5 +20,7 @@ Map<String, dynamic> _$$_NewsResponseCollectionToJson(
     <String, dynamic>{
       'status': instance.status,
       'totalResults': instance.totalResults,
-      'articles': instance.articles,
+      'articles': instance.articles.toJson(
+        (value) => value,
+      ),
     };

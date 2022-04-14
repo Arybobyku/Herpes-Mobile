@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'case_detail/case_detail_model.dart';
 
 part 'case_model.freezed.dart';
+part 'case_model.g.dart';
 
 @freezed
 class CaseModel with _$CaseModel {

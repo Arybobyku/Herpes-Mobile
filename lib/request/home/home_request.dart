@@ -21,7 +21,8 @@ class HomeRequestBase extends HomeRequest {
   @override
   Future<Either<ResponseError, IList<CaseModel>>> getListCase(
       BuildContext context) async {
-    final response = await Provider.of<ApiAccessor>(context,listen: false).getAllCase();
+    final response =
+        await Provider.of<ApiAccessor>(context, listen: false).getAllCase();
     try {
       if (response.isSuccessful) {
         // ignore: avoid_print
@@ -46,7 +47,10 @@ class HomeRequestBase extends HomeRequest {
         return left(ResponseError.serverError(message: _base.meta.message));
       } else {
         return left(
-            ResponseError.serverError(message: response.error.toString()));
+          ResponseError.serverError(
+            message: response.error.toString(),
+          ),
+        );
       }
     } catch (e) {
       return left(ResponseError.serverError(message: e.toString()));

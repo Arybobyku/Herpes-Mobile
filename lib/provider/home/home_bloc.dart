@@ -30,8 +30,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               (l) => null,
               (r) => state.copyWith(listCase: r),
             );
-            emit(state.copyWith(
-                optionFailureOrCase: optionOf(failureOrSuccess)));
+            emit(
+              state.copyWith(
+                isLoading: false,
+                optionFailureOrCase: optionOf(failureOrSuccess),
+              ),
+            );
           },
         );
       },

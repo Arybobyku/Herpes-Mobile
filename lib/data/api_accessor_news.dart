@@ -6,7 +6,7 @@ part 'api_accessor_news.chopper.dart';
 
 @ChopperApi(baseUrl: "")
 abstract class ApiAccessorNews extends ChopperService {
-  @Get(path: "top-headlines?country=id&pageSize=4", headers: {
+  @Get(path: "top-headlines?country=id", headers: {
     Constants.headerContentTypeText: Constants.headerApplicationJsonValue,
     Constants.headerAcceptText: Constants.headerApplicationJsonValue,
     Constants.headerAuthorization:Constants.apiTokenNews
