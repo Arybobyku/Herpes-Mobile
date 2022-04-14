@@ -1,5 +1,13 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:herpes_identification/data/model/case/case_model.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
+import 'package:herpes_identification/helper/text_network_error.dart';
+import 'package:herpes_identification/ui/core/custom_loading_image/custom_loading_image.dart';
+import 'package:herpes_identification/ui/information/widgets/information_list_section.dart';
+import 'package:herpes_identification/ui/information/widgets/information_title_section.dart';
+import 'package:herpes_identification/provider/home/home_bloc.dart';
 
 class InformationPage extends StatelessWidget {
   const InformationPage({Key? key}) : super(key: key);
@@ -8,65 +16,34 @@ class InformationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorPalette.generalBackgroundColor,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-              child: Text(
-                "Jenis Penyakit Herpes",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: ColorPalette.generalSecondaryColor,
-                ),
-              ),
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return state.optionFailureOrCase.match(
+            (t) => t.fold(
+              (l) => l.maybeWhen(
+                  orElse: () => const SizedBox(),
+                  serverError: (error) => TextNetworkError(message: error!),
+                  noInternet: () =>
+                      const TextNetworkError(message: "No Internet")),
+              (listCase) => informationBodyWidget(cases: listCase),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 18,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    margin: const EdgeInsets.only(bottom: 10),
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Colors.white),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('images/panu2.jpg'),
-                            ),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            "Herpes Simplex $index",
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+            () => const Center(
+              child: Center(child: CircularProgressIndicator()),
             ),
-          ],
-        ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget informationBodyWidget({required IList<CaseModel> cases}) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const InformationTitleSection(),
+          InformationListSection(cases: cases),
+        ],
       ),
     );
   }

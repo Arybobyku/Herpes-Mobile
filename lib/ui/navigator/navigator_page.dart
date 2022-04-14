@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
 import 'package:herpes_identification/routes.dart';
+import 'package:lottie/lottie.dart';
 
 class NavigatorPage extends StatefulWidget {
   const NavigatorPage({Key? key}) : super(key: key);
@@ -21,10 +22,13 @@ class _NavigatorPageState extends State<NavigatorPage> {
           child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: SvgPicture.asset("images/navigator.svg"),
+            Lottie.asset(
+              'images/lottie-doctor.json',
             ),
+            const SizedBox(height: 20),
             Align(
               child: Container(
                 height: 80,

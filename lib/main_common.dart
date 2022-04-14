@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_services_binding/flutter_services_binding.dart';
 import 'package:herpes_identification/simple_bloc_delegate.dart';
 import 'package:herpes_identification/ui/my_app.dart';
+import 'package:injectable/injectable.dart';
 import 'injection.dart';
+import 'package:logger/logger.dart';
 
-Future<void> mainCommon() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  //  BlocOverrides.runZoned(
-  //       () => runApp(getIt<MyApp>()),
-  //   blocObserver: getIt<SimpleBlocObserver>(),
+Future<void> mainCommon() async {
+  // BlocOverrides.runZoned(
+  //   () async {
+  //     await setUp();
+  //     return runApp(getIt<MyApp>());
+  //   },
+  //   blocObserver: SimpleBlocObserver(Logger()),
   // );
+  await setUp();
    runApp(getIt<MyApp>());
+}
+Future<void> setUp() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  configureInjection();
+  await SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+  );
 }

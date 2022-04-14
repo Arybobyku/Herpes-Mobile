@@ -1,3 +1,4 @@
+import 'package:herpes_identification/data/api_accessor.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 

@@ -21,8 +21,7 @@ class HomeRequestBase extends HomeRequest {
   @override
   Future<Either<ResponseError, IList<CaseModel>>> getListCase(
       BuildContext context) async {
-    final response =
-        await Provider.of<ApiAccessor>(context, listen: false).getAllCase();
+    final response = await Provider.of<ApiAccessor>(context,listen: false).getAllCase();
     try {
       if (response.isSuccessful) {
         // ignore: avoid_print

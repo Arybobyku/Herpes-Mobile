@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:herpes_identification/data/constants/constants.dart';
+import 'package:injectable/injectable.dart';
 
 part 'api_accessor.chopper.dart';
 
@@ -42,3 +43,4 @@ abstract class ApiAccessor extends ChopperService {
     return _$ApiAccessor(client);
   }
 }
+

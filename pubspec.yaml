@@ -60,9 +60,10 @@ dependencies:
   fast_immutable_collections:
   flutter_bloc:
   bloc_concurrency:
-  logger:
   camera:
   animated_text_kit:
+  flutter_services_binding:
+  lottie: ^1.2.2
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,8 @@ dev_dependencies:
   json_serializable:
   freezed: ^1.0.2
   injectable_generator: ^1.5.2
+  lint:
+  logger:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

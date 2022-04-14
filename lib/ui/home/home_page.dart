@@ -18,38 +18,35 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeBloc>(
-      create: (context) => getIt<HomeBloc>()..add(HomeEvent.watch(context)),
-      child: Scaffold(
-        backgroundColor: ColorPalette.generalBackgroundColor,
-        floatingActionButton: Container(
-          margin: const EdgeInsets.only(bottom: 80),
-          child: FloatingActionButton(
-            backgroundColor: ColorPalette.generalSecondaryColor,
-            child: const Icon(
-              Icons.camera_alt,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              _doPhoto();
-            },
+    return Scaffold(
+      backgroundColor: ColorPalette.generalBackgroundColor,
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 80),
+        child: FloatingActionButton(
+          backgroundColor: ColorPalette.generalSecondaryColor,
+          child: const Icon(
+            Icons.camera_alt,
+            color: Colors.white,
           ),
+          onPressed: () {
+            _doPhoto();
+          },
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              CustomProfileCard(),
-              HomeInformationSection(),
-              SizedBox(height: 20),
-              HomeActivitySection(),
-              SizedBox(height: 20),
-              HomeIdentificationSection(),
-              SizedBox(height: 20),
-              HomeNewsSection(),
-              SizedBox(height: 150),
-            ],
-          ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            CustomProfileCard(),
+            HomeInformationSection(),
+            SizedBox(height: 20),
+            HomeActivitySection(),
+            SizedBox(height: 20),
+            HomeIdentificationSection(),
+            SizedBox(height: 20),
+            HomeNewsSection(),
+            SizedBox(height: 150),
+          ],
         ),
       ),
     );

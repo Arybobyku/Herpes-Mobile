@@ -4,4 +4,6 @@ class Constants{
   static const String headerAcceptText = 'Accept';
   static const String headerApplicationJsonValue = 'application/json';
   static const String headerAuthorization = 'Authorization';
+
+  static const String apiTokenNews = 'bXpeDxP214be77gf4peDxPbe';
 }
