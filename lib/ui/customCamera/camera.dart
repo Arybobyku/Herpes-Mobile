@@ -5,6 +5,7 @@ import 'package:camera/camera.dart';
 import 'package:get/get.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
 import 'package:herpes_identification/routes.dart';
+import 'package:lottie/lottie.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({Key? key}) : super(key: key);
@@ -101,21 +102,28 @@ class _CameraScreenState extends State<CameraScreen> {
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 border: Border.all(color: Colors.white, width: 3.0),
               ),
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    'Harap mengambil gambar ditengah',
-                    textAlign: TextAlign.center,
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16
-                    ),
+              child: Column(
+                children: [
+                  AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        'Harap mengambil gambar ditengah',
+                        textAlign: TextAlign.center,
+                        textStyle:
+                            const TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ],
+                    totalRepeatCount: 50,
+                    pause: const Duration(milliseconds: 3000),
+                    displayFullTextOnTap: true,
+                    stopPauseOnTap: true,
                   ),
+                  Expanded(
+                    child: Lottie.asset(
+                      'images/scanner.json',
+                    ),
+                  )
                 ],
-                totalRepeatCount: 50,
-                pause: const Duration(milliseconds: 3000),
-                displayFullTextOnTap: true,
-                stopPauseOnTap: true,
               ),
             ),
           ),
