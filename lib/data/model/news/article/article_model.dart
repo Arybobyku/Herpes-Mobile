@@ -5,7 +5,7 @@ part 'article_model.g.dart';
 @freezed
 class ArticleModel with _$ArticleModel{
     const factory ArticleModel({
-      required String author,
+      String? author,
       required String title,
       required String url,
       required String description,

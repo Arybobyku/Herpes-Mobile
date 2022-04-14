@@ -23,7 +23,7 @@ class _$ArticleModelTearOff {
   const _$ArticleModelTearOff();
 
   _ArticleModel call(
-      {required String author,
+      {String? author,
       required String title,
       required String url,
       required String description,
@@ -49,7 +49,7 @@ const $ArticleModel = _$ArticleModelTearOff();
 
 /// @nodoc
 mixin _$ArticleModel {
-  String get author => throw _privateConstructorUsedError;
+  String? get author => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -68,7 +68,7 @@ abstract class $ArticleModelCopyWith<$Res> {
           ArticleModel value, $Res Function(ArticleModel) then) =
       _$ArticleModelCopyWithImpl<$Res>;
   $Res call(
-      {String author,
+      {String? author,
       String title,
       String url,
       String description,
@@ -97,7 +97,7 @@ class _$ArticleModelCopyWithImpl<$Res> implements $ArticleModelCopyWith<$Res> {
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -130,7 +130,7 @@ abstract class _$ArticleModelCopyWith<$Res>
       __$ArticleModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String author,
+      {String? author,
       String title,
       String url,
       String description,
@@ -161,7 +161,7 @@ class __$ArticleModelCopyWithImpl<$Res> extends _$ArticleModelCopyWithImpl<$Res>
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -190,7 +190,7 @@ class __$ArticleModelCopyWithImpl<$Res> extends _$ArticleModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ArticleModel implements _ArticleModel {
   const _$_ArticleModel(
-      {required this.author,
+      {this.author,
       required this.title,
       required this.url,
       required this.description,
@@ -201,7 +201,7 @@ class _$_ArticleModel implements _ArticleModel {
       _$$_ArticleModelFromJson(json);
 
   @override
-  final String author;
+  final String? author;
   @override
   final String title;
   @override
@@ -257,7 +257,7 @@ class _$_ArticleModel implements _ArticleModel {
 
 abstract class _ArticleModel implements ArticleModel {
   const factory _ArticleModel(
-      {required String author,
+      {String? author,
       required String title,
       required String url,
       required String description,
@@ -268,7 +268,7 @@ abstract class _ArticleModel implements ArticleModel {
       _$_ArticleModel.fromJson;
 
   @override
-  String get author;
+  String? get author;
   @override
   String get title;
   @override

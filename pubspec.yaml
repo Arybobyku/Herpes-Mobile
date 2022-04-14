@@ -64,6 +64,7 @@ dependencies:
   animated_text_kit:
   flutter_services_binding:
   lottie: ^1.2.2
+  webview_flutter:
 
 dev_dependencies:
   flutter_test:

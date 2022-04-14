@@ -8,7 +8,7 @@ part of 'article_model.dart';
 
 _$_ArticleModel _$$_ArticleModelFromJson(Map<String, dynamic> json) =>
     _$_ArticleModel(
-      author: json['author'] as String,
+      author: json['author'] as String?,
       title: json['title'] as String,
       url: json['url'] as String,
       description: json['description'] as String,

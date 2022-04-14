@@ -12,6 +12,7 @@ import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
 import 'package:herpes_identification/provider/landing/landing_bloc.dart';
 import 'package:herpes_identification/provider/home/home_bloc.dart';
+import 'package:herpes_identification/provider/article/article_bloc.dart';
 
 @injectable
 class MyApp extends StatelessWidget {
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<HomeBloc>(
           create: (context) => getIt<HomeBloc>()..add(HomeEvent.watch(context)),
+        ),
+        BlocProvider<ArticleBloc>(
+          create: (context) =>
+          getIt<ArticleBloc>()..add(ArticleEvent.watch(context))
         ),
       ],
       child: GetMaterialApp(
