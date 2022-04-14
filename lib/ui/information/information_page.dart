@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:herpes_identification/data/model/case/case_model.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
 import 'package:herpes_identification/helper/text_network_error.dart';
-import 'package:herpes_identification/ui/core/custom_loading_image/custom_loading_image.dart';
+import 'package:herpes_identification/ui/core/customLoadingImage/custom_loading_image.dart';
 import 'package:herpes_identification/ui/information/widgets/information_list_section.dart';
 import 'package:herpes_identification/ui/information/widgets/information_title_section.dart';
 import 'package:herpes_identification/provider/home/home_bloc.dart';
@@ -27,9 +27,7 @@ class InformationPage extends StatelessWidget {
                       const TextNetworkError(message: "No Internet")),
               (listCase) => informationBodyWidget(cases: listCase),
             ),
-            () => const Center(
-              child: Center(child: CircularProgressIndicator()),
-            ),
+            () => const CustomLoadingImage(),
           );
         },
       ),

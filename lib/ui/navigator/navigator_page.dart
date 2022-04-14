@@ -29,16 +29,16 @@ class _NavigatorPageState extends State<NavigatorPage> {
               'images/lottie-doctor.json',
             ),
             const SizedBox(height: 20),
-            Align(
-              child: Container(
-                height: 80,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('images/fasilkom.png'))),
-              ),
-            ),
+            // Align(
+            //   child: Container(
+            //     height: 80,
+            //     width: double.infinity,
+            //     decoration: const BoxDecoration(
+            //         image: DecorationImage(
+            //             fit: BoxFit.fitWidth,
+            //             image: AssetImage('images/fasilkom.png'))),
+            //   ),
+            // ),
           ],
         ),
       )),
