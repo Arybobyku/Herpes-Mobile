@@ -1,5 +1,11 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:herpes_identification/data/model/symptom/symptom_model.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
+import 'package:herpes_identification/injection.dart';
+import 'package:herpes_identification/provider/symptom/symptom_bloc.dart';
+import 'package:herpes_identification/ui/core/customLoadingImage/custom_loading_image.dart';
 
 class QuestionPage extends StatefulWidget {
   const QuestionPage({Key? key}) : super(key: key);
@@ -11,63 +17,94 @@ class QuestionPage extends StatefulWidget {
 class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorPalette.generalBackgroundColor,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: ColorPalette.generalSecondaryColor,
-        child: const Icon(
-          Icons.navigate_next,
-          color: Colors.white,
-          size: 40,
+    return BlocProvider<SymptomBloc>(
+      create: (context) =>
+          getIt<SymptomBloc>()..add(SymptomEvent.watchAll(context)),
+      child: Scaffold(
+        backgroundColor: ColorPalette.generalBackgroundColor,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: ColorPalette.generalSecondaryColor,
+          child: const Icon(
+            Icons.navigate_next,
+            color: Colors.white,
+            size: 40,
+          ),
+          onPressed: () {},
         ),
-        onPressed: () {},
+        body: BlocBuilder<SymptomBloc, SymptomState>(
+          builder: (context, state) {
+            return state.optionFailureOrSymptoms.match(
+              (t) => t.fold(
+                (l) => l.maybeWhen(
+                  orElse: () => const Center(
+                    child: Text("Something Went Wrong"),
+                  ),
+                ),
+                (symptoms) => questionBody(symptoms),
+              ),
+              () => const CustomLoadingImage(),
+            );
+          },
+        ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                const Text(
-                  "Tahap 1",
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: ColorPalette.generalBlack,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      padding: const EdgeInsets.all(10),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Row(
-                        children: const [
-                          Expanded(
-                            child: Text(
-                              "Demam",
-                              style: TextStyle(fontSize: 18),
-                            ),
+    );
+  }
+
+  Widget questionBody(IList<SymptomModel> symptoms) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              const Text(
+                "Tahap 1",
+                style: TextStyle(
+                    fontSize: 30,
+                    color: ColorPalette.generalBlack,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              BlocBuilder<SymptomBloc, SymptomState>(
+                builder: (context, state) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: state.selectedSymptoms.length,
+                    itemBuilder: (context, index) {
+                      final symptom = state.selectedSymptoms[index];
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: GestureDetector(
+                          onTap: ()=>context.read<SymptomBloc>().add(SymptomEvent.selectedSymptom(symptom)),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  symptom.name,
+                                  style: const TextStyle(fontSize: 18),
+                                ),
+                              ),
+                              if(state.selectedSymptoms[index].isSelect??false)
+                              const Icon(
+                                Icons.check_circle,
+                                color: Colors.green,
+                              ),
+                            ],
                           ),
-                          Icon(
-                            Icons.check_circle,
-                            color: Colors.green,
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),

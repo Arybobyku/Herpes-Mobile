@@ -6,13 +6,16 @@ part of 'symptom_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SymptomModel _$SymptomModelFromJson(Map<String, dynamic> json) => SymptomModel(
-      json['id'] as int?,
-      json['sympthon_name'] as String?,
+_$_SymptomModel _$$_SymptomModelFromJson(Map<String, dynamic> json) =>
+    _$_SymptomModel(
+      id: json['id'] as int,
+      name: json['sympthon_name'] as String,
+      isSelect: json['isSelect'] as bool?,
     );
 
-Map<String, dynamic> _$SymptomModelToJson(SymptomModel instance) =>
+Map<String, dynamic> _$$_SymptomModelToJson(_$_SymptomModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'sympthon_name': instance.name,
+      'isSelect': instance.isSelect,
     };
