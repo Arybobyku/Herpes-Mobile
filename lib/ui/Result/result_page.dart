@@ -90,15 +90,20 @@ class ResultPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.all(15),
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
                         "Gejala",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w500),
+                            fontSize: 20, fontWeight: FontWeight.w500),
                       ),
                       const SizedBox(height: 5),
                       ListView.builder(
@@ -107,22 +112,44 @@ class ResultPage extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           final symptom = state.caseModel.caseDetails[index];
-                          return Text("$index.${symptom.sympthons.name}");
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${index + 1}. ",
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    symptom.sympthons.name,
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
                         },
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.all(15),
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
                         "Solusi",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w500),
+                            fontSize: 20, fontWeight: FontWeight.w500),
                       ),
                       const SizedBox(height: 5),
                       ListView.builder(
@@ -131,25 +158,41 @@ class ResultPage extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           final solution = state.caseModel.caseSolutions[index];
-                          return Text("$index.${solution.solution!.name}");
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${index + 1}. ",
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    "${solution.solution!.name}",
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
                         },
                       ),
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
+                    children: const [
+                      Text(
                         "Proses Perhitungan Diagnosis",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(height: 5),
+                      SizedBox(height: 5),
                     ],
                   ),
                 ),
