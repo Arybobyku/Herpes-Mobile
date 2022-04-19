@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:herpes_identification/data/model/symptom/symptom_model.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
 import 'package:herpes_identification/injection.dart';
+import 'package:herpes_identification/provider/home/home_bloc.dart';
 import 'package:herpes_identification/provider/symptom/symptom_bloc.dart';
+import 'package:herpes_identification/provider/CBRAndRBR/cbr_and_rbr_bloc.dart';
 import 'package:herpes_identification/ui/core/customLoadingImage/custom_loading_image.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -17,19 +19,38 @@ class QuestionPage extends StatefulWidget {
 class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SymptomBloc>(
-      create: (context) =>
-          getIt<SymptomBloc>()..add(SymptomEvent.watchAll(context)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SymptomBloc>(
+          create: (context) => getIt<SymptomBloc>()
+            ..add(
+              SymptomEvent.watchAll(context),
+            ),
+        ),
+      ],
       child: Scaffold(
         backgroundColor: ColorPalette.generalBackgroundColor,
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: ColorPalette.generalSecondaryColor,
-          child: const Icon(
-            Icons.navigate_next,
-            color: Colors.white,
-            size: 40,
-          ),
-          onPressed: () {},
+        floatingActionButton: BlocBuilder<SymptomBloc, SymptomState>(
+          builder: (context, symptomState) {
+            return BlocBuilder<CbrAndRbrBloc, CbrAndRbrState>(
+              builder: (context, cbrState) {
+                return FloatingActionButton(
+                  backgroundColor: ColorPalette.generalSecondaryColor,
+                  child: const Icon(
+                    Icons.navigate_next,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  onPressed: () => context.read<CbrAndRbrBloc>().add(
+                        CbrAndRbrEvent.calculated(
+                          cases: context.read<HomeBloc>().state.listCase,
+                          symptoms: symptomState.selectedSymptoms,
+                        ),
+                      ),
+                );
+              },
+            );
+          },
         ),
         body: BlocBuilder<SymptomBloc, SymptomState>(
           builder: (context, state) {
@@ -82,7 +103,9 @@ class _QuestionPageState extends State<QuestionPage> {
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                         child: GestureDetector(
-                          onTap: ()=>context.read<SymptomBloc>().add(SymptomEvent.selectedSymptom(symptom)),
+                          onTap: () => context
+                              .read<SymptomBloc>()
+                              .add(SymptomEvent.selectedSymptom(symptom)),
                           child: Row(
                             children: [
                               Expanded(
@@ -91,11 +114,12 @@ class _QuestionPageState extends State<QuestionPage> {
                                   style: const TextStyle(fontSize: 18),
                                 ),
                               ),
-                              if(state.selectedSymptoms[index].isSelect??false)
-                              const Icon(
-                                Icons.check_circle,
-                                color: Colors.green,
-                              ),
+                              if (state.selectedSymptoms[index].isSelect ??
+                                  false)
+                                const Icon(
+                                  Icons.check_circle,
+                                  color: Colors.green,
+                                ),
                             ],
                           ),
                         ),

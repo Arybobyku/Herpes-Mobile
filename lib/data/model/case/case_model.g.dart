@@ -7,18 +7,16 @@ part of 'case_model.dart';
 // **************************************************************************
 
 _$_CaseModel _$$_CaseModelFromJson(Map<String, dynamic> json) => _$_CaseModel(
-      id: json['id'] as int?,
-      confidenceLevel: json['confidence_level'] as int?,
-      age: json['age'] as int?,
-      gender: json['gender'] as String?,
-      disease: json['disease'] == null
-          ? null
-          : DiseaseModel.fromJson(json['disease'] as Map<String, dynamic>),
-      caseDetails: (json['cases_pivots'] as List<dynamic>?)
-          ?.map((e) => CaseDetailModel.fromJson(e as Map<String, dynamic>))
+      id: json['id'] as int,
+      confidenceLevel: json['confidence_level'] as int,
+      age: json['age'] as int,
+      gender: json['gender'] as String,
+      disease: DiseaseModel.fromJson(json['disease'] as Map<String, dynamic>),
+      caseDetails: (json['cases_pivots'] as List<dynamic>)
+          .map((e) => CaseDetailModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      caseSolutions: (json['solutions'] as List<dynamic>?)
-          ?.map((e) => CaseSolutionModel.fromJson(e as Map<String, dynamic>))
+      caseSolutions: (json['solutions'] as List<dynamic>)
+          .map((e) => CaseSolutionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

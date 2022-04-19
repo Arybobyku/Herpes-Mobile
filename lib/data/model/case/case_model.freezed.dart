@@ -23,13 +23,20 @@ class _$CaseModelTearOff {
   const _$CaseModelTearOff();
 
   _CaseModel call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "confidence_level") int? confidenceLevel,
-      @JsonKey(name: "age") int? age,
-      @JsonKey(name: "gender") String? gender,
-      @JsonKey(name: "disease") DiseaseModel? disease,
-      @JsonKey(name: "cases_pivots") List<CaseDetailModel>? caseDetails,
-      @JsonKey(name: "solutions") List<CaseSolutionModel>? caseSolutions}) {
+      {@JsonKey(name: "id")
+          required int id,
+      @JsonKey(name: "confidence_level")
+          required int confidenceLevel,
+      @JsonKey(name: "age")
+          required int age,
+      @JsonKey(name: "gender")
+          required String gender,
+      @JsonKey(name: "disease")
+          required DiseaseModel disease,
+      @JsonKey(name: "cases_pivots")
+          required List<CaseDetailModel> caseDetails,
+      @JsonKey(name: "solutions")
+          required List<CaseSolutionModel> caseSolutions}) {
     return _CaseModel(
       id: id,
       confidenceLevel: confidenceLevel,
@@ -52,19 +59,19 @@ const $CaseModel = _$CaseModelTearOff();
 /// @nodoc
 mixin _$CaseModel {
   @JsonKey(name: "id")
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "confidence_level")
-  int? get confidenceLevel => throw _privateConstructorUsedError;
+  int get confidenceLevel => throw _privateConstructorUsedError;
   @JsonKey(name: "age")
-  int? get age => throw _privateConstructorUsedError;
+  int get age => throw _privateConstructorUsedError;
   @JsonKey(name: "gender")
-  String? get gender => throw _privateConstructorUsedError;
+  String get gender => throw _privateConstructorUsedError;
   @JsonKey(name: "disease")
-  DiseaseModel? get disease => throw _privateConstructorUsedError;
+  DiseaseModel get disease => throw _privateConstructorUsedError;
   @JsonKey(name: "cases_pivots")
-  List<CaseDetailModel>? get caseDetails => throw _privateConstructorUsedError;
+  List<CaseDetailModel> get caseDetails => throw _privateConstructorUsedError;
   @JsonKey(name: "solutions")
-  List<CaseSolutionModel>? get caseSolutions =>
+  List<CaseSolutionModel> get caseSolutions =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -78,13 +85,13 @@ abstract class $CaseModelCopyWith<$Res> {
   factory $CaseModelCopyWith(CaseModel value, $Res Function(CaseModel) then) =
       _$CaseModelCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "confidence_level") int? confidenceLevel,
-      @JsonKey(name: "age") int? age,
-      @JsonKey(name: "gender") String? gender,
-      @JsonKey(name: "disease") DiseaseModel? disease,
-      @JsonKey(name: "cases_pivots") List<CaseDetailModel>? caseDetails,
-      @JsonKey(name: "solutions") List<CaseSolutionModel>? caseSolutions});
+      {@JsonKey(name: "id") int id,
+      @JsonKey(name: "confidence_level") int confidenceLevel,
+      @JsonKey(name: "age") int age,
+      @JsonKey(name: "gender") String gender,
+      @JsonKey(name: "disease") DiseaseModel disease,
+      @JsonKey(name: "cases_pivots") List<CaseDetailModel> caseDetails,
+      @JsonKey(name: "solutions") List<CaseSolutionModel> caseSolutions});
 }
 
 /// @nodoc
@@ -109,31 +116,31 @@ class _$CaseModelCopyWithImpl<$Res> implements $CaseModelCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       confidenceLevel: confidenceLevel == freezed
           ? _value.confidenceLevel
           : confidenceLevel // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       age: age == freezed
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       disease: disease == freezed
           ? _value.disease
           : disease // ignore: cast_nullable_to_non_nullable
-              as DiseaseModel?,
+              as DiseaseModel,
       caseDetails: caseDetails == freezed
           ? _value.caseDetails
           : caseDetails // ignore: cast_nullable_to_non_nullable
-              as List<CaseDetailModel>?,
+              as List<CaseDetailModel>,
       caseSolutions: caseSolutions == freezed
           ? _value.caseSolutions
           : caseSolutions // ignore: cast_nullable_to_non_nullable
-              as List<CaseSolutionModel>?,
+              as List<CaseSolutionModel>,
     ));
   }
 }
@@ -145,13 +152,13 @@ abstract class _$CaseModelCopyWith<$Res> implements $CaseModelCopyWith<$Res> {
       __$CaseModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "confidence_level") int? confidenceLevel,
-      @JsonKey(name: "age") int? age,
-      @JsonKey(name: "gender") String? gender,
-      @JsonKey(name: "disease") DiseaseModel? disease,
-      @JsonKey(name: "cases_pivots") List<CaseDetailModel>? caseDetails,
-      @JsonKey(name: "solutions") List<CaseSolutionModel>? caseSolutions});
+      {@JsonKey(name: "id") int id,
+      @JsonKey(name: "confidence_level") int confidenceLevel,
+      @JsonKey(name: "age") int age,
+      @JsonKey(name: "gender") String gender,
+      @JsonKey(name: "disease") DiseaseModel disease,
+      @JsonKey(name: "cases_pivots") List<CaseDetailModel> caseDetails,
+      @JsonKey(name: "solutions") List<CaseSolutionModel> caseSolutions});
 }
 
 /// @nodoc
@@ -177,31 +184,31 @@ class __$CaseModelCopyWithImpl<$Res> extends _$CaseModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       confidenceLevel: confidenceLevel == freezed
           ? _value.confidenceLevel
           : confidenceLevel // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       age: age == freezed
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       disease: disease == freezed
           ? _value.disease
           : disease // ignore: cast_nullable_to_non_nullable
-              as DiseaseModel?,
+              as DiseaseModel,
       caseDetails: caseDetails == freezed
           ? _value.caseDetails
           : caseDetails // ignore: cast_nullable_to_non_nullable
-              as List<CaseDetailModel>?,
+              as List<CaseDetailModel>,
       caseSolutions: caseSolutions == freezed
           ? _value.caseSolutions
           : caseSolutions // ignore: cast_nullable_to_non_nullable
-              as List<CaseSolutionModel>?,
+              as List<CaseSolutionModel>,
     ));
   }
 }
@@ -210,38 +217,38 @@ class __$CaseModelCopyWithImpl<$Res> extends _$CaseModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CaseModel implements _CaseModel {
   const _$_CaseModel(
-      {@JsonKey(name: "id") this.id,
-      @JsonKey(name: "confidence_level") this.confidenceLevel,
-      @JsonKey(name: "age") this.age,
-      @JsonKey(name: "gender") this.gender,
-      @JsonKey(name: "disease") this.disease,
-      @JsonKey(name: "cases_pivots") this.caseDetails,
-      @JsonKey(name: "solutions") this.caseSolutions});
+      {@JsonKey(name: "id") required this.id,
+      @JsonKey(name: "confidence_level") required this.confidenceLevel,
+      @JsonKey(name: "age") required this.age,
+      @JsonKey(name: "gender") required this.gender,
+      @JsonKey(name: "disease") required this.disease,
+      @JsonKey(name: "cases_pivots") required this.caseDetails,
+      @JsonKey(name: "solutions") required this.caseSolutions});
 
   factory _$_CaseModel.fromJson(Map<String, dynamic> json) =>
       _$$_CaseModelFromJson(json);
 
   @override
   @JsonKey(name: "id")
-  final int? id;
+  final int id;
   @override
   @JsonKey(name: "confidence_level")
-  final int? confidenceLevel;
+  final int confidenceLevel;
   @override
   @JsonKey(name: "age")
-  final int? age;
+  final int age;
   @override
   @JsonKey(name: "gender")
-  final String? gender;
+  final String gender;
   @override
   @JsonKey(name: "disease")
-  final DiseaseModel? disease;
+  final DiseaseModel disease;
   @override
   @JsonKey(name: "cases_pivots")
-  final List<CaseDetailModel>? caseDetails;
+  final List<CaseDetailModel> caseDetails;
   @override
   @JsonKey(name: "solutions")
-  final List<CaseSolutionModel>? caseSolutions;
+  final List<CaseSolutionModel> caseSolutions;
 
   @override
   String toString() {
@@ -289,39 +296,45 @@ class _$_CaseModel implements _CaseModel {
 
 abstract class _CaseModel implements CaseModel {
   const factory _CaseModel(
-          {@JsonKey(name: "id") int? id,
-          @JsonKey(name: "confidence_level") int? confidenceLevel,
-          @JsonKey(name: "age") int? age,
-          @JsonKey(name: "gender") String? gender,
-          @JsonKey(name: "disease") DiseaseModel? disease,
-          @JsonKey(name: "cases_pivots") List<CaseDetailModel>? caseDetails,
-          @JsonKey(name: "solutions") List<CaseSolutionModel>? caseSolutions}) =
-      _$_CaseModel;
+      {@JsonKey(name: "id")
+          required int id,
+      @JsonKey(name: "confidence_level")
+          required int confidenceLevel,
+      @JsonKey(name: "age")
+          required int age,
+      @JsonKey(name: "gender")
+          required String gender,
+      @JsonKey(name: "disease")
+          required DiseaseModel disease,
+      @JsonKey(name: "cases_pivots")
+          required List<CaseDetailModel> caseDetails,
+      @JsonKey(name: "solutions")
+          required List<CaseSolutionModel> caseSolutions}) = _$_CaseModel;
 
   factory _CaseModel.fromJson(Map<String, dynamic> json) =
       _$_CaseModel.fromJson;
 
   @override
   @JsonKey(name: "id")
-  int? get id;
+  int get id;
   @override
   @JsonKey(name: "confidence_level")
-  int? get confidenceLevel;
+  int get confidenceLevel;
   @override
   @JsonKey(name: "age")
-  int? get age;
+  int get age;
   @override
   @JsonKey(name: "gender")
-  String? get gender;
+  String get gender;
   @override
   @JsonKey(name: "disease")
-  DiseaseModel? get disease;
+  DiseaseModel get disease;
   @override
   @JsonKey(name: "cases_pivots")
-  List<CaseDetailModel>? get caseDetails;
+  List<CaseDetailModel> get caseDetails;
   @override
   @JsonKey(name: "solutions")
-  List<CaseSolutionModel>? get caseSolutions;
+  List<CaseSolutionModel> get caseSolutions;
   @override
   @JsonKey(ignore: true)
   _$CaseModelCopyWith<_CaseModel> get copyWith =>

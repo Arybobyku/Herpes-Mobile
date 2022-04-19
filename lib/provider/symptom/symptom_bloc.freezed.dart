@@ -29,6 +29,10 @@ class _$SymptomEventTearOff {
       symptomModel,
     );
   }
+
+  _calculated calculated() {
+    return const _calculated();
+  }
 }
 
 /// @nodoc
@@ -40,18 +44,21 @@ mixin _$SymptomEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context) watchAll,
     required TResult Function(SymptomModel symptomModel) selectedSymptom,
+    required TResult Function() calculated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context)? watchAll,
     TResult Function(SymptomModel symptomModel)? selectedSymptom,
+    TResult Function()? calculated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context)? watchAll,
     TResult Function(SymptomModel symptomModel)? selectedSymptom,
+    TResult Function()? calculated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,18 +66,21 @@ mixin _$SymptomEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchAll value) watchAll,
     required TResult Function(_selectedSymptom value) selectedSymptom,
+    required TResult Function(_calculated value) calculated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_WatchAll value)? watchAll,
     TResult Function(_selectedSymptom value)? selectedSymptom,
+    TResult Function(_calculated value)? calculated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchAll value)? watchAll,
     TResult Function(_selectedSymptom value)? selectedSymptom,
+    TResult Function(_calculated value)? calculated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -156,6 +166,7 @@ class _$_WatchAll implements _WatchAll {
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context) watchAll,
     required TResult Function(SymptomModel symptomModel) selectedSymptom,
+    required TResult Function() calculated,
   }) {
     return watchAll(context);
   }
@@ -165,6 +176,7 @@ class _$_WatchAll implements _WatchAll {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context)? watchAll,
     TResult Function(SymptomModel symptomModel)? selectedSymptom,
+    TResult Function()? calculated,
   }) {
     return watchAll?.call(context);
   }
@@ -174,6 +186,7 @@ class _$_WatchAll implements _WatchAll {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context)? watchAll,
     TResult Function(SymptomModel symptomModel)? selectedSymptom,
+    TResult Function()? calculated,
     required TResult orElse(),
   }) {
     if (watchAll != null) {
@@ -187,6 +200,7 @@ class _$_WatchAll implements _WatchAll {
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchAll value) watchAll,
     required TResult Function(_selectedSymptom value) selectedSymptom,
+    required TResult Function(_calculated value) calculated,
   }) {
     return watchAll(this);
   }
@@ -196,6 +210,7 @@ class _$_WatchAll implements _WatchAll {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_WatchAll value)? watchAll,
     TResult Function(_selectedSymptom value)? selectedSymptom,
+    TResult Function(_calculated value)? calculated,
   }) {
     return watchAll?.call(this);
   }
@@ -205,6 +220,7 @@ class _$_WatchAll implements _WatchAll {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchAll value)? watchAll,
     TResult Function(_selectedSymptom value)? selectedSymptom,
+    TResult Function(_calculated value)? calculated,
     required TResult orElse(),
   }) {
     if (watchAll != null) {
@@ -300,6 +316,7 @@ class _$_selectedSymptom implements _selectedSymptom {
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context) watchAll,
     required TResult Function(SymptomModel symptomModel) selectedSymptom,
+    required TResult Function() calculated,
   }) {
     return selectedSymptom(symptomModel);
   }
@@ -309,6 +326,7 @@ class _$_selectedSymptom implements _selectedSymptom {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context)? watchAll,
     TResult Function(SymptomModel symptomModel)? selectedSymptom,
+    TResult Function()? calculated,
   }) {
     return selectedSymptom?.call(symptomModel);
   }
@@ -318,6 +336,7 @@ class _$_selectedSymptom implements _selectedSymptom {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context)? watchAll,
     TResult Function(SymptomModel symptomModel)? selectedSymptom,
+    TResult Function()? calculated,
     required TResult orElse(),
   }) {
     if (selectedSymptom != null) {
@@ -331,6 +350,7 @@ class _$_selectedSymptom implements _selectedSymptom {
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchAll value) watchAll,
     required TResult Function(_selectedSymptom value) selectedSymptom,
+    required TResult Function(_calculated value) calculated,
   }) {
     return selectedSymptom(this);
   }
@@ -340,6 +360,7 @@ class _$_selectedSymptom implements _selectedSymptom {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_WatchAll value)? watchAll,
     TResult Function(_selectedSymptom value)? selectedSymptom,
+    TResult Function(_calculated value)? calculated,
   }) {
     return selectedSymptom?.call(this);
   }
@@ -349,6 +370,7 @@ class _$_selectedSymptom implements _selectedSymptom {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchAll value)? watchAll,
     TResult Function(_selectedSymptom value)? selectedSymptom,
+    TResult Function(_calculated value)? calculated,
     required TResult orElse(),
   }) {
     if (selectedSymptom != null) {
@@ -366,6 +388,116 @@ abstract class _selectedSymptom implements SymptomEvent {
   @JsonKey(ignore: true)
   _$selectedSymptomCopyWith<_selectedSymptom> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$calculatedCopyWith<$Res> {
+  factory _$calculatedCopyWith(
+          _calculated value, $Res Function(_calculated) then) =
+      __$calculatedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$calculatedCopyWithImpl<$Res> extends _$SymptomEventCopyWithImpl<$Res>
+    implements _$calculatedCopyWith<$Res> {
+  __$calculatedCopyWithImpl(
+      _calculated _value, $Res Function(_calculated) _then)
+      : super(_value, (v) => _then(v as _calculated));
+
+  @override
+  _calculated get _value => super._value as _calculated;
+}
+
+/// @nodoc
+
+class _$_calculated implements _calculated {
+  const _$_calculated();
+
+  @override
+  String toString() {
+    return 'SymptomEvent.calculated()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _calculated);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) watchAll,
+    required TResult Function(SymptomModel symptomModel) selectedSymptom,
+    required TResult Function() calculated,
+  }) {
+    return calculated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(BuildContext context)? watchAll,
+    TResult Function(SymptomModel symptomModel)? selectedSymptom,
+    TResult Function()? calculated,
+  }) {
+    return calculated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? watchAll,
+    TResult Function(SymptomModel symptomModel)? selectedSymptom,
+    TResult Function()? calculated,
+    required TResult orElse(),
+  }) {
+    if (calculated != null) {
+      return calculated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WatchAll value) watchAll,
+    required TResult Function(_selectedSymptom value) selectedSymptom,
+    required TResult Function(_calculated value) calculated,
+  }) {
+    return calculated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_WatchAll value)? watchAll,
+    TResult Function(_selectedSymptom value)? selectedSymptom,
+    TResult Function(_calculated value)? calculated,
+  }) {
+    return calculated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WatchAll value)? watchAll,
+    TResult Function(_selectedSymptom value)? selectedSymptom,
+    TResult Function(_calculated value)? calculated,
+    required TResult orElse(),
+  }) {
+    if (calculated != null) {
+      return calculated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _calculated implements SymptomEvent {
+  const factory _calculated() = _$_calculated;
 }
 
 /// @nodoc

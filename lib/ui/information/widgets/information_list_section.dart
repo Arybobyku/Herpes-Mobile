@@ -41,7 +41,7 @@ class InformationListSection extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    caseModel.disease!.diseaseName!,
+                    caseModel.disease.diseaseName!,
                     style: const TextStyle(fontSize: 16),
                   ),
                 ),

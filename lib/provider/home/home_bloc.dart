@@ -27,9 +27,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             emit(state.copyWith(isLoading: true));
             final failureOrSuccess = await _homeRequest.getListCase(e.context);
             failureOrSuccess.match(
-              (l) => null,
-              (r) => state.copyWith(listCase: r),
-            );
+                    (l) => null, (r) => emit(state.copyWith(listCase: r)));
             emit(
               state.copyWith(
                 isLoading: false,
