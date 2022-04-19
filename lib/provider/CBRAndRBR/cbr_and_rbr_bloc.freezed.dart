@@ -266,9 +266,14 @@ abstract class _Calculated implements CbrAndRbrEvent {
 class _$CbrAndRbrStateTearOff {
   const _$CbrAndRbrStateTearOff();
 
-  _CbrAndRbrState call({required String results}) {
+  _CbrAndRbrState call(
+      {required CaseModel caseModel,
+      required bool success,
+      required double result}) {
     return _CbrAndRbrState(
-      results: results,
+      caseModel: caseModel,
+      success: success,
+      result: result,
     );
   }
 }
@@ -278,7 +283,9 @@ const $CbrAndRbrState = _$CbrAndRbrStateTearOff();
 
 /// @nodoc
 mixin _$CbrAndRbrState {
-  String get results => throw _privateConstructorUsedError;
+  CaseModel get caseModel => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
+  double get result => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CbrAndRbrStateCopyWith<CbrAndRbrState> get copyWith =>
@@ -290,7 +297,9 @@ abstract class $CbrAndRbrStateCopyWith<$Res> {
   factory $CbrAndRbrStateCopyWith(
           CbrAndRbrState value, $Res Function(CbrAndRbrState) then) =
       _$CbrAndRbrStateCopyWithImpl<$Res>;
-  $Res call({String results});
+  $Res call({CaseModel caseModel, bool success, double result});
+
+  $CaseModelCopyWith<$Res> get caseModel;
 }
 
 /// @nodoc
@@ -304,14 +313,31 @@ class _$CbrAndRbrStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? results = freezed,
+    Object? caseModel = freezed,
+    Object? success = freezed,
+    Object? result = freezed,
   }) {
     return _then(_value.copyWith(
-      results: results == freezed
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
-              as String,
+      caseModel: caseModel == freezed
+          ? _value.caseModel
+          : caseModel // ignore: cast_nullable_to_non_nullable
+              as CaseModel,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
+      result: result == freezed
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
+  }
+
+  @override
+  $CaseModelCopyWith<$Res> get caseModel {
+    return $CaseModelCopyWith<$Res>(_value.caseModel, (value) {
+      return _then(_value.copyWith(caseModel: value));
+    });
   }
 }
 
@@ -322,7 +348,10 @@ abstract class _$CbrAndRbrStateCopyWith<$Res>
           _CbrAndRbrState value, $Res Function(_CbrAndRbrState) then) =
       __$CbrAndRbrStateCopyWithImpl<$Res>;
   @override
-  $Res call({String results});
+  $Res call({CaseModel caseModel, bool success, double result});
+
+  @override
+  $CaseModelCopyWith<$Res> get caseModel;
 }
 
 /// @nodoc
@@ -338,13 +367,23 @@ class __$CbrAndRbrStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? results = freezed,
+    Object? caseModel = freezed,
+    Object? success = freezed,
+    Object? result = freezed,
   }) {
     return _then(_CbrAndRbrState(
-      results: results == freezed
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
-              as String,
+      caseModel: caseModel == freezed
+          ? _value.caseModel
+          : caseModel // ignore: cast_nullable_to_non_nullable
+              as CaseModel,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
+      result: result == freezed
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -352,14 +391,19 @@ class __$CbrAndRbrStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CbrAndRbrState implements _CbrAndRbrState {
-  const _$_CbrAndRbrState({required this.results});
+  const _$_CbrAndRbrState(
+      {required this.caseModel, required this.success, required this.result});
 
   @override
-  final String results;
+  final CaseModel caseModel;
+  @override
+  final bool success;
+  @override
+  final double result;
 
   @override
   String toString() {
-    return 'CbrAndRbrState(results: $results)';
+    return 'CbrAndRbrState(caseModel: $caseModel, success: $success, result: $result)';
   }
 
   @override
@@ -367,12 +411,17 @@ class _$_CbrAndRbrState implements _CbrAndRbrState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CbrAndRbrState &&
-            const DeepCollectionEquality().equals(other.results, results));
+            const DeepCollectionEquality().equals(other.caseModel, caseModel) &&
+            const DeepCollectionEquality().equals(other.success, success) &&
+            const DeepCollectionEquality().equals(other.result, result));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(results));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(caseModel),
+      const DeepCollectionEquality().hash(success),
+      const DeepCollectionEquality().hash(result));
 
   @JsonKey(ignore: true)
   @override
@@ -381,10 +430,17 @@ class _$_CbrAndRbrState implements _CbrAndRbrState {
 }
 
 abstract class _CbrAndRbrState implements CbrAndRbrState {
-  const factory _CbrAndRbrState({required String results}) = _$_CbrAndRbrState;
+  const factory _CbrAndRbrState(
+      {required CaseModel caseModel,
+      required bool success,
+      required double result}) = _$_CbrAndRbrState;
 
   @override
-  String get results;
+  CaseModel get caseModel;
+  @override
+  bool get success;
+  @override
+  double get result;
   @override
   @JsonKey(ignore: true)
   _$CbrAndRbrStateCopyWith<_CbrAndRbrState> get copyWith =>

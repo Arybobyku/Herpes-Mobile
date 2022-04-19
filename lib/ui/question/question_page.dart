@@ -1,12 +1,14 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:herpes_identification/data/model/symptom/symptom_model.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
 import 'package:herpes_identification/injection.dart';
 import 'package:herpes_identification/provider/home/home_bloc.dart';
 import 'package:herpes_identification/provider/symptom/symptom_bloc.dart';
 import 'package:herpes_identification/provider/CBRAndRBR/cbr_and_rbr_bloc.dart';
+import 'package:herpes_identification/routes.dart';
 import 'package:herpes_identification/ui/core/customLoadingImage/custom_loading_image.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -28,44 +30,51 @@ class _QuestionPageState extends State<QuestionPage> {
             ),
         ),
       ],
-      child: Scaffold(
-        backgroundColor: ColorPalette.generalBackgroundColor,
-        floatingActionButton: BlocBuilder<SymptomBloc, SymptomState>(
-          builder: (context, symptomState) {
-            return BlocBuilder<CbrAndRbrBloc, CbrAndRbrState>(
-              builder: (context, cbrState) {
-                return FloatingActionButton(
-                  backgroundColor: ColorPalette.generalSecondaryColor,
-                  child: const Icon(
-                    Icons.navigate_next,
-                    color: Colors.white,
-                    size: 40,
-                  ),
-                  onPressed: () => context.read<CbrAndRbrBloc>().add(
-                        CbrAndRbrEvent.calculated(
-                          cases: context.read<HomeBloc>().state.listCase,
-                          symptoms: symptomState.selectedSymptoms,
+      child: BlocListener<CbrAndRbrBloc, CbrAndRbrState>(
+        listener: (context, state) {
+          if(state.success){
+            Get.toNamed(Routes.resultPage);
+          }
+        },
+        child: Scaffold(
+          backgroundColor: ColorPalette.generalBackgroundColor,
+          floatingActionButton: BlocBuilder<SymptomBloc, SymptomState>(
+            builder: (context, symptomState) {
+              return BlocBuilder<CbrAndRbrBloc, CbrAndRbrState>(
+                builder: (context, cbrState) {
+                  return FloatingActionButton(
+                    backgroundColor: ColorPalette.generalSecondaryColor,
+                    child: const Icon(
+                      Icons.navigate_next,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                    onPressed: () => context.read<CbrAndRbrBloc>().add(
+                          CbrAndRbrEvent.calculated(
+                            cases: context.read<HomeBloc>().state.listCase,
+                            symptoms: symptomState.selectedSymptoms,
+                          ),
                         ),
-                      ),
-                );
-              },
-            );
-          },
-        ),
-        body: BlocBuilder<SymptomBloc, SymptomState>(
-          builder: (context, state) {
-            return state.optionFailureOrSymptoms.match(
-              (t) => t.fold(
-                (l) => l.maybeWhen(
-                  orElse: () => const Center(
-                    child: Text("Something Went Wrong"),
+                  );
+                },
+              );
+            },
+          ),
+          body: BlocBuilder<SymptomBloc, SymptomState>(
+            builder: (context, state) {
+              return state.optionFailureOrSymptoms.match(
+                (t) => t.fold(
+                  (l) => l.maybeWhen(
+                    orElse: () => const Center(
+                      child: Text("Something Went Wrong"),
+                    ),
                   ),
+                  (symptoms) => questionBody(symptoms),
                 ),
-                (symptoms) => questionBody(symptoms),
-              ),
-              () => const CustomLoadingImage(),
-            );
-          },
+                () => const CustomLoadingImage(),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -80,7 +89,7 @@ class _QuestionPageState extends State<QuestionPage> {
             children: [
               const SizedBox(height: 20),
               const Text(
-                "Tahap 1",
+                "Gejala yang dialami",
                 style: TextStyle(
                     fontSize: 30,
                     color: ColorPalette.generalBlack,

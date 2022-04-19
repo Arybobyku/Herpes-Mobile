@@ -23,6 +23,16 @@ class CaseModel with _$CaseModel {
     @JsonKey(name: "solutions") required List<CaseSolutionModel> caseSolutions,
   }) = _CaseModel;
 
+  factory CaseModel.initial() => CaseModel(
+        disease: DiseaseModel(-1, ""),
+        gender: '',
+        id: -1,
+        age: 0,
+        confidenceLevel: 0,
+        caseSolutions: [],
+        caseDetails: [],
+      );
+
   factory CaseModel.fromJson(Map<String, dynamic> json) =>
       _$CaseModelFromJson(json);
 }
