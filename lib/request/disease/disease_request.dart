@@ -7,6 +7,7 @@ import 'package:herpes_identification/data/api_accessor.dart';
 import 'package:herpes_identification/data/core/base_response.dart';
 import 'package:herpes_identification/data/model/disease/disease_model.dart';
 import 'package:herpes_identification/data/model/responseError/response_error.dart';
+import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
 
 abstract class DiseaseRequest {
@@ -14,6 +15,7 @@ abstract class DiseaseRequest {
       BuildContext context);
 }
 
+@LazySingleton(as: DiseaseRequest)
 class DiseaseRequestBase implements DiseaseRequest {
   @override
   Future<Either<ResponseError, IList<DiseaseModel>>> watchAll(
