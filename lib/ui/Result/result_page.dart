@@ -62,7 +62,7 @@ class ResultPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            state.caseModel.disease.diseaseName!,
+                            state.caseModel.disease.diseaseName,
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w500),
                           ),

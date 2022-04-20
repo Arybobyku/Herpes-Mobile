@@ -23,8 +23,8 @@ class CaseModel with _$CaseModel {
     @JsonKey(name: "solutions") required List<CaseSolutionModel> caseSolutions,
   }) = _CaseModel;
 
-  factory CaseModel.initial() => CaseModel(
-        disease: DiseaseModel(-1, ""),
+  factory CaseModel.initial() => const CaseModel(
+        disease: DiseaseModel(id: -1,diseaseName: ""),
         gender: '',
         id: -1,
         age: 0,

@@ -6,12 +6,13 @@ part of 'disease_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DiseaseModel _$DiseaseModelFromJson(Map<String, dynamic> json) => DiseaseModel(
-      json['id'] as int?,
-      json['disease_name'] as String?,
+_$_DiseaseModel _$$_DiseaseModelFromJson(Map<String, dynamic> json) =>
+    _$_DiseaseModel(
+      id: json['id'] as int,
+      diseaseName: json['disease_name'] as String,
     );
 
-Map<String, dynamic> _$DiseaseModelToJson(DiseaseModel instance) =>
+Map<String, dynamic> _$$_DiseaseModelToJson(_$_DiseaseModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'disease_name': instance.diseaseName,

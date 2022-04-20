@@ -14,6 +14,7 @@ import 'package:herpes_identification/provider/landing/landing_bloc.dart';
 import 'package:herpes_identification/provider/home/home_bloc.dart';
 import 'package:herpes_identification/provider/article/article_bloc.dart';
 import 'package:herpes_identification/provider/CBRAndRBR/cbr_and_rbr_bloc.dart';
+import 'package:herpes_identification/provider/disease/disease_bloc.dart';
 
 @injectable
 class MyApp extends StatelessWidget {
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CbrAndRbrBloc>(
           create: (context) => getIt<CbrAndRbrBloc>(),
+        ),
+        BlocProvider<DiseaseBloc>(
+          create: (context) => getIt<DiseaseBloc>()..add(DiseaseEvent.watchAll(context)),
         ),
         // BlocProvider<ArticleBloc>(
         //   create: (context) =>

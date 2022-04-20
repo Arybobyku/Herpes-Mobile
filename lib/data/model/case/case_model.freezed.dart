@@ -92,6 +92,8 @@ abstract class $CaseModelCopyWith<$Res> {
       @JsonKey(name: "disease") DiseaseModel disease,
       @JsonKey(name: "cases_pivots") List<CaseDetailModel> caseDetails,
       @JsonKey(name: "solutions") List<CaseSolutionModel> caseSolutions});
+
+  $DiseaseModelCopyWith<$Res> get disease;
 }
 
 /// @nodoc
@@ -143,6 +145,13 @@ class _$CaseModelCopyWithImpl<$Res> implements $CaseModelCopyWith<$Res> {
               as List<CaseSolutionModel>,
     ));
   }
+
+  @override
+  $DiseaseModelCopyWith<$Res> get disease {
+    return $DiseaseModelCopyWith<$Res>(_value.disease, (value) {
+      return _then(_value.copyWith(disease: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -159,6 +168,9 @@ abstract class _$CaseModelCopyWith<$Res> implements $CaseModelCopyWith<$Res> {
       @JsonKey(name: "disease") DiseaseModel disease,
       @JsonKey(name: "cases_pivots") List<CaseDetailModel> caseDetails,
       @JsonKey(name: "solutions") List<CaseSolutionModel> caseSolutions});
+
+  @override
+  $DiseaseModelCopyWith<$Res> get disease;
 }
 
 /// @nodoc

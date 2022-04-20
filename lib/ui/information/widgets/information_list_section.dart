@@ -1,11 +1,12 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:herpes_identification/data/model/case/case_model.dart';
+import 'package:herpes_identification/data/model/disease/disease_model.dart';
 
 class InformationListSection extends StatelessWidget {
-  const InformationListSection({Key? key,required this.cases}) : super(key: key);
+  const InformationListSection({Key? key,required this.diseases}) : super(key: key);
 
-  final IList<CaseModel> cases;
+  final IList<DiseaseModel> diseases;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,9 +14,9 @@ class InformationListSection extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: cases.length,
+        itemCount: diseases.length,
         itemBuilder: (context, index) {
-          var caseModel = cases[index];
+          var disease = diseases[index];
           return Container(
             padding: const EdgeInsets.symmetric(
                 horizontal: 10, vertical: 10),
@@ -41,7 +42,7 @@ class InformationListSection extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    caseModel.disease.diseaseName!,
+                    disease.diseaseName,
                     style: const TextStyle(fontSize: 16),
                   ),
                 ),
