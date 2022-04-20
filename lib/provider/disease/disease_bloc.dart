@@ -11,15 +11,24 @@ import 'package:herpes_identification/request/disease/disease_request.dart';
 import 'package:injectable/injectable.dart';
 
 part 'disease_event.dart';
+
 part 'disease_state.dart';
+
 part 'disease_bloc.freezed.dart';
 
 @injectable
 class DiseaseBloc extends Bloc<DiseaseEvent, DiseaseState> {
   final DiseaseRequest _diseaseRequest;
+
   DiseaseBloc(this._diseaseRequest) : super(DiseaseState.initial()) {
-    on<DiseaseEvent>((event, emit) {
-      // TODO: implement event handler
+    on<DiseaseEvent>((event, emit) async {
+      await event.map(
+        watchAll: (e) async {
+          final failureOrSuccess = await _diseaseRequest.watchAll(e.context);
+          failureOrSuccess.match((l) => null, (r) => emit(state.copyWith(diseases: r)));
+          emit(state.copyWith(optionFailureOrDiseases: optionOf(failureOrSuccess)));
+        },
+      );
     });
   }
 }

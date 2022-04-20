@@ -13,7 +13,7 @@ class CustomLoadingImage extends StatelessWidget {
           Lottie.asset(
             'images/heart-loading.json',
           ),
-          const Text("Loading",style: TextStyle(fontSize: 20),)
+          const Text("Loading...",style: TextStyle(fontSize: 20),)
         ],
       ),
     );

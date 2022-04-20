@@ -20,7 +20,7 @@ class DiseaseRequestBase implements DiseaseRequest {
   @override
   Future<Either<ResponseError, IList<DiseaseModel>>> watchAll(
       BuildContext context) async {
-    final response = await Provider.of<ApiAccessor>(context).getListDisease();
+    final response = await Provider.of<ApiAccessor>(context,listen: false).getListDisease();
     try {
       if (response.isSuccessful) {
         // ignore: avoid_print
