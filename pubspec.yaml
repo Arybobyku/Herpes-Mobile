@@ -65,7 +65,10 @@ dependencies:
   flutter_services_binding:
   lottie: ^1.2.2
   webview_flutter:
-
+  hive_flutter:
+  hive:
+  pull_to_refresh: ^2.0.0
+  rflutter_alert: ^2.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -77,6 +80,8 @@ dev_dependencies:
   injectable_generator: ^1.5.2
   lint:
   logger:
+  hive_generator:
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

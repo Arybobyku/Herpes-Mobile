@@ -21,19 +21,27 @@ part 'cbr_and_rbr_bloc.freezed.dart';
 class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
   CbrAndRbrBloc() : super(CbrAndRbrState.initial()) {
     on<CbrAndRbrEvent>(
-      (event, emit) {
-        event.map(
+      (event, emit) async {
+        double previousSimilarityGlobal = 0.0;
+        CaseModel prediction = CaseModel.initial();
+
+        await event.map(
           calculated: (e) async {
-            emit(state.copyWith(success: false,result: 0,caseModel: CaseModel.initial(),),);
+            emit(
+              state.copyWith(
+                success: false,
+                result: 0,
+                caseModel: CaseModel.initial(),
+              ),
+            );
 
             IList<SymptomModel> userSymptoms = <SymptomModel>[].lock;
             final cases = e.cases;
             var similarityLocal = 0;
             double similarityGlobal = 0.0;
-            double previousSimilarityGlobal = 0.0;
             var symptomWeight = 0;
             double symptomAppears = 0;
-            CaseModel prediction = CaseModel.initial();
+
             e.symptoms
                 .where((element) => element.isSelect == true)
                 .flatMap((t) => userSymptoms = userSymptoms.add(t));
@@ -71,16 +79,17 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
               print(
                   "\n\n-----------------------------------------------------\n\n");
             }
-            emit(
+
+            print("BOB outside ${previousSimilarityGlobal}");
+            print("BOB case id ${prediction.id}");
+          },
+        ).whenComplete(() => emit(
               state.copyWith(
                 caseModel: prediction,
                 success: true,
                 result: previousSimilarityGlobal,
               ),
-            );
-            print("BOB outside ${previousSimilarityGlobal}");
-          },
-        );
+            ));
       },
     );
   }

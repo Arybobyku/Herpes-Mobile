@@ -2,6 +2,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:herpes_identification/data/model/case/case_model.dart';
 import 'package:herpes_identification/data/model/disease/disease_model.dart';
+import 'package:herpes_identification/helper/color_pallete.dart';
 
 class InformationListSection extends StatelessWidget {
   const InformationListSection({Key? key,required this.diseases}) : super(key: key);
@@ -46,6 +47,7 @@ class InformationListSection extends StatelessWidget {
                     style: const TextStyle(fontSize: 16),
                   ),
                 ),
+                const Icon(Icons.arrow_forward_ios,color: ColorPalette.generalSecondaryColor,),
               ],
             ),
           );

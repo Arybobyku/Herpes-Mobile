@@ -12,12 +12,14 @@ import 'package:herpes_identification/ui/home/widget/home_information_section.da
 import 'package:herpes_identification/ui/home/widget/home_news_section.dart';
 import 'package:herpes_identification/injection.dart';
 import 'package:herpes_identification/provider/home/home_bloc.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _refreshController = RefreshController();
     return Scaffold(
       backgroundColor: ColorPalette.generalBackgroundColor,
       floatingActionButton: Container(
@@ -33,28 +35,45 @@ class HomePage extends StatelessWidget {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            CustomProfileCard(),
-            HomeInformationSection(),
-            SizedBox(height: 20),
-            HomeActivitySection(),
-            SizedBox(height: 20),
-            HomeIdentificationSection(),
-            SizedBox(height: 20),
-            // HomeNewsSection(),
-            // SizedBox(height: 150),
-          ],
+      body: BlocConsumer<HomeBloc, HomeState>(
+        listener: (context, state) => state.optionFailureOrCase.match(
+          (t) => t.fold(
+            (l) => _refreshController.refreshFailed(),
+            (r){
+              _refreshController.refreshCompleted();
+              _refreshController.loadComplete();
+              print("FINISH");
+            },
+          ),
+          () => _refreshController.refreshFailed(),
         ),
+        builder: (context, state) {
+          return SmartRefresher(
+            controller: _refreshController,
+            onRefresh: () => getIt<HomeBloc>().add(HomeEvent.watch(context)),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  CustomProfileCard(),
+                  HomeInformationSection(),
+                  SizedBox(height: 20),
+                  HomeActivitySection(),
+                  SizedBox(height: 20),
+                  HomeIdentificationSection(),
+                  SizedBox(height: 20),
+                  // HomeNewsSection(),
+                  // SizedBox(height: 150),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 
   _doPhoto() async {
     Get.toNamed(Routes.cameraScreen);
-    // File? image = await ImagePickerHelper()
-    //     .getImage(source: ImageSource.camera, imageQuality: 30);
   }
 }

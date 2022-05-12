@@ -10,6 +10,7 @@ import 'package:herpes_identification/provider/symptom/symptom_bloc.dart';
 import 'package:herpes_identification/provider/CBRAndRBR/cbr_and_rbr_bloc.dart';
 import 'package:herpes_identification/routes.dart';
 import 'package:herpes_identification/ui/core/customLoadingImage/custom_loading_image.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class QuestionPage extends StatefulWidget {
   const QuestionPage({Key? key}) : super(key: key);
@@ -19,6 +20,8 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
+  double result = 0;
+  String herpesName = "";
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -32,8 +35,12 @@ class _QuestionPageState extends State<QuestionPage> {
       ],
       child: BlocListener<CbrAndRbrBloc, CbrAndRbrState>(
         listener: (context, state) {
-          if(state.success){
+          if(state.result>=0.8){
             Get.toNamed(Routes.resultPage);
+          }else if(state.result!=0){
+            result = state.result;
+            herpesName = state.caseModel.disease.diseaseName;
+            showDialog();
           }
         },
         child: Scaffold(
@@ -142,5 +149,29 @@ class _QuestionPageState extends State<QuestionPage> {
         ),
       ),
     );
+  }
+
+  showDialog(){
+    Alert(
+      context: context,
+      type: AlertType.success,
+      title: "Anda masih aman",
+      desc: "Hasil diagnosis ${(result * 100).toStringAsFixed(2)}% penyakit $herpesName.",
+      buttons: [
+        DialogButton(
+          child: const Text(
+            "Kembali",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+          gradient: const LinearGradient(colors: [
+            Color.fromRGBO(116, 116, 191, 1.0),
+            Color.fromRGBO(52, 138, 199, 1.0)
+          ]),
+        )
+      ],
+    ).show();
   }
 }
