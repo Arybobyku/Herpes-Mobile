@@ -46,42 +46,67 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
                 .where((element) => element.isSelect == true)
                 .flatMap((t) => userSymptoms = userSymptoms.add(t));
 
-            ///calculated
-            for (int i = 0; i < cases.length; i++) {
-              for (int j = 0; j < cases[i].caseDetails.length; j++) {
-                for (int k = 0; k < userSymptoms.length; k++) {
-                  if (cases[i].caseDetails[j].sympthons.id ==
-                      userSymptoms[k].id) {
-                    similarityLocal += cases[i].caseDetails[j].weight * 1;
-                    symptomAppears += 1;
+            ///calculated rbr
+            bool isRbr = false;
+            for(int i = 0;i<cases.length;i++){
+              int caseSymptomLength = cases[i].caseDetails.length;
+              int counterSameSymptom = 0;
+              for(int j = 0; j < cases[i].caseDetails.length; j++){
+                for(int k = 0; k < userSymptoms.length; k++){
+                  if(cases[i].caseDetails[j].sympthons.id == userSymptoms[k].id){
+                      counterSameSymptom++;
                   }
                 }
-                symptomWeight += cases[i].caseDetails[j].weight;
               }
-
-              similarityGlobal = similarityLocal / symptomWeight;
-              print("BOB symptomAppears ${symptomAppears}");
-              symptomAppears = symptomAppears / cases[i].caseDetails.length;
-              similarityGlobal *= symptomAppears;
-
-              print("BOB similarityGlobal ${similarityGlobal}");
-              print("BOB symptomWeight ${symptomWeight}");
-              print("BOB similarityLocal ${similarityLocal}");
-              print("BOB symptomAppears ${symptomAppears}");
-              if (similarityGlobal > previousSimilarityGlobal) {
+              if(caseSymptomLength==counterSameSymptom){
                 prediction = cases[i];
-                previousSimilarityGlobal = await similarityGlobal;
-
-                print(
-                    "BOB previousSimilarityGlobal ${previousSimilarityGlobal}");
+                previousSimilarityGlobal = 1;
+                isRbr = true;
+                print("BOB all rbr rules fulfilled");
+                break;
               }
-              symptomAppears = 0;
-              print(
-                  "\n\n-----------------------------------------------------\n\n");
+            }
+            ///calculated cbr if rbr didnt get the result
+            if(!isRbr){
+
+              for (int i = 0; i < cases.length; i++) {
+                for (int j = 0; j < cases[i].caseDetails.length; j++) {
+                  for (int k = 0; k < userSymptoms.length; k++) {
+                    if (cases[i].caseDetails[j].sympthons.id ==
+                        userSymptoms[k].id) {
+                      similarityLocal += cases[i].caseDetails[j].weight * 1;
+                      symptomAppears += 1;
+                    }
+                  }
+                  symptomWeight += cases[i].caseDetails[j].weight;
+                }
+
+                similarityGlobal = similarityLocal / symptomWeight;
+                symptomAppears = symptomAppears / cases[i].caseDetails.length;
+                similarityGlobal *= symptomAppears;
+
+                print("BOB symptomAppears ${symptomAppears}");
+                print("BOB similarityGlobal ${similarityGlobal}");
+                print("BOB symptomWeight ${symptomWeight}");
+                print("BOB similarityLocal ${similarityLocal}");
+                print("BOB symptomAppears ${symptomAppears}");
+                if (similarityGlobal > previousSimilarityGlobal) {
+                  prediction = cases[i];
+                  previousSimilarityGlobal = await similarityGlobal;
+
+                  print(
+                      "BOB previousSimilarityGlobal ${previousSimilarityGlobal}");
+                }
+                symptomAppears = 0;
+                print(
+                    "\n\n-----------------------------------------------------\n\n");
+              }
+
+              print("BOB outside ${previousSimilarityGlobal}");
+              print("BOB case id ${prediction.id}");
+
             }
 
-            print("BOB outside ${previousSimilarityGlobal}");
-            print("BOB case id ${prediction.id}");
           },
         ).whenComplete(() => emit(
               state.copyWith(

@@ -165,6 +165,7 @@ class _QuestionPageState extends State<QuestionPage> {
           ),
           onPressed: (){
             Navigator.pop(context);
+            Navigator.pop(context);
           },
           gradient: const LinearGradient(colors: [
             Color.fromRGBO(116, 116, 191, 1.0),

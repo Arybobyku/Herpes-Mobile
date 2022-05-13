@@ -17,37 +17,43 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorPalette.generalBackgroundColor,
-        floatingActionButton: Container(
-          margin: const EdgeInsets.only(bottom: 30),
-          child: FloatingActionButton(
-            backgroundColor: ColorPalette.generalSecondaryColor,
-            child: const Icon(
-              Icons.camera_alt,
-              color: Colors.white,
+      child: WillPopScope(
+        onWillPop: () async{
+          Get.offNamedUntil(Routes.landing, (route) => false);
+          return true;
+        },
+        child: Scaffold(
+          backgroundColor: ColorPalette.generalBackgroundColor,
+          floatingActionButton: Container(
+            margin: const EdgeInsets.only(bottom: 30),
+            child: FloatingActionButton(
+              backgroundColor: ColorPalette.generalSecondaryColor,
+              child: const Icon(
+                Icons.camera_alt,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Get.toNamed(Routes.cameraScreen);
+              },
             ),
-            onPressed: () {
-              Get.toNamed(Routes.cameraScreen);
+          ),
+          body: BlocBuilder<CbrAndRbrBloc, CbrAndRbrState>(
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 20),
+                  ResultHeaderSection(caseModel: state.caseModel,result: state.result),
+                  const SizedBox(height: 20),
+                  ResultSymptomSection(caseModel: state.caseModel),
+                  const SizedBox(height: 20),
+                  ResultSolutionSection(caseModel: state.caseModel),
+                  const SizedBox(height: 20),
+                  const ResultCalculatedSection(),
+                ],
+              );
             },
           ),
-        ),
-        body: BlocBuilder<CbrAndRbrBloc, CbrAndRbrState>(
-          builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
-                ResultHeaderSection(caseModel: state.caseModel,result: state.result),
-                const SizedBox(height: 20),
-                ResultSymptomSection(caseModel: state.caseModel),
-                const SizedBox(height: 20),
-                ResultSolutionSection(caseModel: state.caseModel),
-                const SizedBox(height: 20),
-                const ResultCalculatedSection(),
-              ],
-            );
-          },
         ),
       ),
     );
