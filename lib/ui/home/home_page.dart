@@ -50,7 +50,8 @@ class HomePage extends StatelessWidget {
         builder: (context, state) {
           return SmartRefresher(
             controller: _refreshController,
-            onRefresh: () => getIt<HomeBloc>().add(HomeEvent.watch(context)),
+            onRefresh: () => getIt<HomeBloc>().add(HomeEvent.refresh(context)),
+            onLoading: ()=> getIt<HomeBloc>().add(HomeEvent.watch(context)),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

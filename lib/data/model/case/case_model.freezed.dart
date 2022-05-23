@@ -26,7 +26,7 @@ class _$CaseModelTearOff {
       {@JsonKey(name: "id")
           required int id,
       @JsonKey(name: "confidence_level")
-          required int confidenceLevel,
+          required double confidenceLevel,
       @JsonKey(name: "age")
           required int age,
       @JsonKey(name: "gender")
@@ -61,7 +61,7 @@ mixin _$CaseModel {
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "confidence_level")
-  int get confidenceLevel => throw _privateConstructorUsedError;
+  double get confidenceLevel => throw _privateConstructorUsedError;
   @JsonKey(name: "age")
   int get age => throw _privateConstructorUsedError;
   @JsonKey(name: "gender")
@@ -86,7 +86,7 @@ abstract class $CaseModelCopyWith<$Res> {
       _$CaseModelCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "confidence_level") int confidenceLevel,
+      @JsonKey(name: "confidence_level") double confidenceLevel,
       @JsonKey(name: "age") int age,
       @JsonKey(name: "gender") String gender,
       @JsonKey(name: "disease") DiseaseModel disease,
@@ -122,7 +122,7 @@ class _$CaseModelCopyWithImpl<$Res> implements $CaseModelCopyWith<$Res> {
       confidenceLevel: confidenceLevel == freezed
           ? _value.confidenceLevel
           : confidenceLevel // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       age: age == freezed
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ abstract class _$CaseModelCopyWith<$Res> implements $CaseModelCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "confidence_level") int confidenceLevel,
+      @JsonKey(name: "confidence_level") double confidenceLevel,
       @JsonKey(name: "age") int age,
       @JsonKey(name: "gender") String gender,
       @JsonKey(name: "disease") DiseaseModel disease,
@@ -200,7 +200,7 @@ class __$CaseModelCopyWithImpl<$Res> extends _$CaseModelCopyWithImpl<$Res>
       confidenceLevel: confidenceLevel == freezed
           ? _value.confidenceLevel
           : confidenceLevel // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       age: age == freezed
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
@@ -245,7 +245,7 @@ class _$_CaseModel implements _CaseModel {
   final int id;
   @override
   @JsonKey(name: "confidence_level")
-  final int confidenceLevel;
+  final double confidenceLevel;
   @override
   @JsonKey(name: "age")
   final int age;
@@ -311,7 +311,7 @@ abstract class _CaseModel implements CaseModel {
       {@JsonKey(name: "id")
           required int id,
       @JsonKey(name: "confidence_level")
-          required int confidenceLevel,
+          required double confidenceLevel,
       @JsonKey(name: "age")
           required int age,
       @JsonKey(name: "gender")
@@ -331,7 +331,7 @@ abstract class _CaseModel implements CaseModel {
   int get id;
   @override
   @JsonKey(name: "confidence_level")
-  int get confidenceLevel;
+  double get confidenceLevel;
   @override
   @JsonKey(name: "age")
   int get age;

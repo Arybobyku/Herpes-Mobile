@@ -8,6 +8,8 @@ import 'package:herpes_identification/helper/color_pallete.dart';
 import 'package:herpes_identification/helper/text_network_error.dart';
 import 'package:herpes_identification/routes.dart';
 import 'package:herpes_identification/provider/home/home_bloc.dart';
+import 'package:herpes_identification/ui/core/customLoadingImage/custom_loading_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeInformationSection extends StatelessWidget {
   const HomeInformationSection({Key? key}) : super(key: key);
@@ -19,14 +21,14 @@ class HomeInformationSection extends StatelessWidget {
         return state.optionFailureOrCase.match(
           (t) => t.fold(
             (l) => l.maybeWhen(
-              orElse:()=> const SizedBox(),
-              serverError: (error)=> TextNetworkError(message: error!),
-              noInternet: ()=> const TextNetworkError(message: "No Internet")
-            ),
+                orElse: () => const SizedBox(),
+                serverError: (error) => TextNetworkError(message: error!),
+                noInternet: () =>
+                    const TextNetworkError(message: "No Internet")),
             (listCase) => body(cases: listCase),
           ),
           () => const Center(
-            child: CircularProgressIndicator(),
+            child: CustomLoadingImage(),
           ),
         );
       },

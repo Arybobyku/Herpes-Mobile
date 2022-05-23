@@ -23,6 +23,12 @@ class _$HomeEventTearOff {
       context,
     );
   }
+
+  _Refresh refresh(BuildContext context) {
+    return _Refresh(
+      context,
+    );
+  }
 }
 
 /// @nodoc
@@ -35,32 +41,38 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context) watch,
+    required TResult Function(BuildContext context) refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context)? watch,
+    TResult Function(BuildContext context)? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context)? watch,
+    TResult Function(BuildContext context)? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Watch value) watch,
+    required TResult Function(_Refresh value) refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
+    TResult Function(_Refresh value)? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
+    TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -162,6 +174,7 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context) watch,
+    required TResult Function(BuildContext context) refresh,
   }) {
     return watch(context);
   }
@@ -170,6 +183,7 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context)? watch,
+    TResult Function(BuildContext context)? refresh,
   }) {
     return watch?.call(context);
   }
@@ -178,6 +192,7 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context)? watch,
+    TResult Function(BuildContext context)? refresh,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -190,6 +205,7 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Watch value) watch,
+    required TResult Function(_Refresh value) refresh,
   }) {
     return watch(this);
   }
@@ -198,6 +214,7 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
+    TResult Function(_Refresh value)? refresh,
   }) {
     return watch?.call(this);
   }
@@ -206,6 +223,7 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
+    TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -223,6 +241,140 @@ abstract class _Watch implements HomeEvent {
   @override
   @JsonKey(ignore: true)
   _$WatchCopyWith<_Watch> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$RefreshCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$RefreshCopyWith(_Refresh value, $Res Function(_Refresh) then) =
+      __$RefreshCopyWithImpl<$Res>;
+  @override
+  $Res call({BuildContext context});
+}
+
+/// @nodoc
+class __$RefreshCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$RefreshCopyWith<$Res> {
+  __$RefreshCopyWithImpl(_Refresh _value, $Res Function(_Refresh) _then)
+      : super(_value, (v) => _then(v as _Refresh));
+
+  @override
+  _Refresh get _value => super._value as _Refresh;
+
+  @override
+  $Res call({
+    Object? context = freezed,
+  }) {
+    return _then(_Refresh(
+      context == freezed
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Refresh implements _Refresh {
+  const _$_Refresh(this.context);
+
+  @override
+  final BuildContext context;
+
+  @override
+  String toString() {
+    return 'HomeEvent.refresh(context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Refresh &&
+            const DeepCollectionEquality().equals(other.context, context));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(context));
+
+  @JsonKey(ignore: true)
+  @override
+  _$RefreshCopyWith<_Refresh> get copyWith =>
+      __$RefreshCopyWithImpl<_Refresh>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context) watch,
+    required TResult Function(BuildContext context) refresh,
+  }) {
+    return refresh(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(BuildContext context)? watch,
+    TResult Function(BuildContext context)? refresh,
+  }) {
+    return refresh?.call(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context)? watch,
+    TResult Function(BuildContext context)? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Watch value) watch,
+    required TResult Function(_Refresh value) refresh,
+  }) {
+    return refresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Watch value)? watch,
+    TResult Function(_Refresh value)? refresh,
+  }) {
+    return refresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Watch value)? watch,
+    TResult Function(_Refresh value)? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Refresh implements HomeEvent {
+  const factory _Refresh(BuildContext context) = _$_Refresh;
+
+  @override
+  BuildContext get context;
+  @override
+  @JsonKey(ignore: true)
+  _$RefreshCopyWith<_Refresh> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

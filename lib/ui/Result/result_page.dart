@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:herpes_identification/data/constants/constants.dart';
+import 'package:herpes_identification/data/model/case/case_model.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
+import 'package:herpes_identification/locatore_storage_service.dart';
 import 'package:herpes_identification/provider/CBRAndRBR/cbr_and_rbr_bloc.dart';
 import 'package:herpes_identification/routes.dart';
+import 'package:herpes_identification/setup_locator.dart';
 import 'package:herpes_identification/ui/Result/widget/result_header_section.dart';
 import 'package:herpes_identification/ui/Result/widget/result_solution_section.dart';
 import 'package:herpes_identification/ui/Result/widget/result_symptom_section.dart';
@@ -49,13 +55,15 @@ class ResultPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   ResultSolutionSection(caseModel: state.caseModel),
                   const SizedBox(height: 20),
-                  const ResultCalculatedSection(),
-                ],
+                  // const ResultCalculatedSection(),
+                  ],
               );
             },
           ),
         ),
       ),
     );
+
   }
+
 }

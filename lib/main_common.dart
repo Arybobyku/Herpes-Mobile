@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_services_binding/flutter_services_binding.dart';
+import 'package:herpes_identification/setup_locator.dart';
 import 'package:herpes_identification/simple_bloc_delegate.dart';
 import 'package:herpes_identification/ui/my_app.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -19,7 +20,11 @@ Future<void> mainCommon() async {
   //   blocObserver: SimpleBlocObserver(Logger()),
   // );
   await setUp();
-   runApp(getIt<MyApp>());
+
+
+  setupLocator().then((value) {
+    runApp(getIt<MyApp>());
+  });
 }
 Future<void> setUp() async {
   WidgetsFlutterBinding.ensureInitialized();

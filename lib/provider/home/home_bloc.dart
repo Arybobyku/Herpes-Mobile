@@ -24,10 +24,37 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       (event, emit) async {
         await event.map(
           watch: (e) async {
-            emit(state.copyWith(isLoading: true,optionFailureOrCase: none()));
+            emit(HomeState.initial());
             final failureOrSuccess = await _homeRequest.getListCase(e.context);
-            failureOrSuccess.match(
-                    (l) => null, (r) => emit(state.copyWith(listCase: r)));
+            emit(
+              state.copyWith(
+                listCase: state.listCase.addAll(
+                    failureOrSuccess.foldRight(
+                        <CaseModel>[].toList(), (acc, b) => b)
+                ),
+              ),
+            );
+            emit(
+              state.copyWith(
+                isLoading: false,
+                optionFailureOrCase: optionOf(failureOrSuccess),
+              ),
+            );
+          },
+          refresh: (e) async {
+            emit(HomeState.initial());
+            print("refresh");
+            final failureOrSuccess = await _homeRequest.getListCase(e.context);
+            if (failureOrSuccess.isRight()) {
+              emit(
+                state.copyWith(
+                  listCase: state.listCase.addAll(
+                    failureOrSuccess.foldRight(
+                        <CaseModel>[].toList(), (acc, b) => b)
+                  ),
+                ),
+              );
+            }
             emit(
               state.copyWith(
                 isLoading: false,

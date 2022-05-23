@@ -25,8 +25,16 @@ class DiseaseBloc extends Bloc<DiseaseEvent, DiseaseState> {
       await event.map(
         watchAll: (e) async {
           final failureOrSuccess = await _diseaseRequest.watchAll(e.context);
-          failureOrSuccess.match((l) => null, (r) => emit(state.copyWith(diseases: r)));
-          emit(state.copyWith(optionFailureOrDiseases: optionOf(failureOrSuccess)));
+          failureOrSuccess.match(
+              (l) => null, (r) => emit(state.copyWith(diseases: r)));
+          emit(
+            state.copyWith(
+              optionFailureOrDiseases: optionOf(failureOrSuccess),
+              diseases: state.diseases.addAll(
+                failureOrSuccess.foldRight(<DiseaseModel>[].toIList(), (acc, b) => b)
+              )
+            ),
+          );
         },
       );
     });

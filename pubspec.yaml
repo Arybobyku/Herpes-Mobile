@@ -60,6 +60,7 @@ dependencies:
   fast_immutable_collections:
   flutter_bloc:
   bloc_concurrency:
+  shared_preferences:
   camera:
   animated_text_kit:
   flutter_services_binding:
@@ -69,6 +70,9 @@ dependencies:
   hive:
   pull_to_refresh: ^2.0.0
   rflutter_alert: ^2.0.4
+  shimmer: ^2.0.0
+  intl:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

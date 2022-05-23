@@ -8,7 +8,7 @@ part of 'case_model.dart';
 
 _$_CaseModel _$$_CaseModelFromJson(Map<String, dynamic> json) => _$_CaseModel(
       id: json['id'] as int,
-      confidenceLevel: json['confidence_level'] as int,
+      confidenceLevel: (json['confidence_level'] as num).toDouble(),
       age: json['age'] as int,
       gender: json['gender'] as String,
       disease: DiseaseModel.fromJson(json['disease'] as Map<String, dynamic>),

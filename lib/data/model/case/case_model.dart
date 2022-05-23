@@ -15,7 +15,7 @@ part 'case_model.g.dart';
 class CaseModel with _$CaseModel {
   const factory CaseModel({
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "confidence_level") required int confidenceLevel,
+    @JsonKey(name: "confidence_level") required double confidenceLevel,
     @JsonKey(name: "age") required int age,
     @JsonKey(name: "gender") required String gender,
     @JsonKey(name: "disease") required DiseaseModel disease,
@@ -28,7 +28,7 @@ class CaseModel with _$CaseModel {
         gender: '',
         id: -1,
         age: 0,
-        confidenceLevel: 0,
+        confidenceLevel: 0.0,
         caseSolutions: [],
         caseDetails: [],
       );
