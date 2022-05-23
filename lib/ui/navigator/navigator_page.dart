@@ -51,7 +51,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   navigated(BuildContext context) async {
 
     var storageService = locator<LocalStorageService>();
-    var name = storageService.getStringList(Constants.userName);
+    var name = storageService.getStringFromPref(Constants.userName);
 
     await Future.delayed(const Duration(seconds: 5), () async {
       if(name==null){
