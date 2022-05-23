@@ -44,7 +44,7 @@ class InformationPage extends StatelessWidget {
                           const TextNetworkError(message: "No Internet")),
                   (listDisease) => SmartRefresher(
                     controller: _refreshController,
-                    onRefresh: () => getIt<DiseaseBloc>()
+                    onRefresh: () => context.read<DiseaseBloc>()
                       ..add(DiseaseEvent.watchAll(context)),
                     child: informationBodyWidget(diseases: listDisease),
                   ),

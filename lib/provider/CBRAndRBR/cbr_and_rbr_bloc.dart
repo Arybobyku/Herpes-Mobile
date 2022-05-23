@@ -116,6 +116,7 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
             }
           },
         ).whenComplete(() {
+          ///save result to state
           emit(
             state.copyWith(
               caseModel: prediction,
@@ -123,7 +124,7 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
               result: previousSimilarityGlobal,
             ),
           );
-          //save to sharepref
+          //save to sharedPreference
           var now =  DateTime.now();
           var formatter =  DateFormat('yyyy-MM-dd');
           String formattedDate = formatter.format(now);
