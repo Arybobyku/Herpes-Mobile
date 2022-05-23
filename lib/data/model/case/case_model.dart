@@ -24,7 +24,7 @@ class CaseModel with _$CaseModel {
   }) = _CaseModel;
 
   factory CaseModel.initial() => const CaseModel(
-        disease: DiseaseModel(id: -1,diseaseName: ""),
+        disease: DiseaseModel(id: -1,diseaseName: "",image: ""),
         gender: '',
         id: -1,
         age: 0,

@@ -45,12 +45,12 @@ class HistoryPage extends StatelessWidget {
                       Container(
                         height: 50,
                         width: 50,
-                        decoration: const BoxDecoration(
+                        decoration:  BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage('images/panu2.jpg'),
+                            image: NetworkImage("${Constants.apiBaseUrl}/${history.caseModel.disease.image}"),
                           ),
-                          borderRadius: BorderRadius.all(
+                          borderRadius: const BorderRadius.all(
                             Radius.circular(10),
                           ),
                         ),

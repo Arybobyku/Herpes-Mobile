@@ -1,6 +1,7 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:herpes_identification/data/constants/constants.dart';
 import 'package:herpes_identification/data/model/case/case_model.dart';
 import 'package:herpes_identification/data/model/disease/disease_model.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
@@ -36,12 +37,12 @@ class InformationListSection extends StatelessWidget {
                   Container(
                     height: 50,
                     width: 50,
-                    decoration: const BoxDecoration(
+                    decoration:  BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage('images/panu2.jpg'),
+                        image: NetworkImage("${Constants.apiBaseUrl}/${disease.image}"),
                       ),
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),

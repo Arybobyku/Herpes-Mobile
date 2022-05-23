@@ -11,6 +11,7 @@ class DiseaseModel with _$DiseaseModel{
    const factory  DiseaseModel({
       @JsonKey(name: "id")  required int id,
       @JsonKey(name: "disease_name") required String diseaseName,
+      @JsonKey(name: "image") required String image,
     }) = _DiseaseModel;
 
   factory DiseaseModel.fromJson(Map<String, dynamic> json) =>

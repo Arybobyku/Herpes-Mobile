@@ -24,10 +24,12 @@ class _$DiseaseModelTearOff {
 
   _DiseaseModel call(
       {@JsonKey(name: "id") required int id,
-      @JsonKey(name: "disease_name") required String diseaseName}) {
+      @JsonKey(name: "disease_name") required String diseaseName,
+      @JsonKey(name: "image") required String image}) {
     return _DiseaseModel(
       id: id,
       diseaseName: diseaseName,
+      image: image,
     );
   }
 
@@ -45,6 +47,8 @@ mixin _$DiseaseModel {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "disease_name")
   String get diseaseName => throw _privateConstructorUsedError;
+  @JsonKey(name: "image")
+  String get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,7 +63,8 @@ abstract class $DiseaseModelCopyWith<$Res> {
       _$DiseaseModelCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "disease_name") String diseaseName});
+      @JsonKey(name: "disease_name") String diseaseName,
+      @JsonKey(name: "image") String image});
 }
 
 /// @nodoc
@@ -74,6 +79,7 @@ class _$DiseaseModelCopyWithImpl<$Res> implements $DiseaseModelCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? diseaseName = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -83,6 +89,10 @@ class _$DiseaseModelCopyWithImpl<$Res> implements $DiseaseModelCopyWith<$Res> {
       diseaseName: diseaseName == freezed
           ? _value.diseaseName
           : diseaseName // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -97,7 +107,8 @@ abstract class _$DiseaseModelCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "disease_name") String diseaseName});
+      @JsonKey(name: "disease_name") String diseaseName,
+      @JsonKey(name: "image") String image});
 }
 
 /// @nodoc
@@ -114,6 +125,7 @@ class __$DiseaseModelCopyWithImpl<$Res> extends _$DiseaseModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? diseaseName = freezed,
+    Object? image = freezed,
   }) {
     return _then(_DiseaseModel(
       id: id == freezed
@@ -124,6 +136,10 @@ class __$DiseaseModelCopyWithImpl<$Res> extends _$DiseaseModelCopyWithImpl<$Res>
           ? _value.diseaseName
           : diseaseName // ignore: cast_nullable_to_non_nullable
               as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -133,7 +149,8 @@ class __$DiseaseModelCopyWithImpl<$Res> extends _$DiseaseModelCopyWithImpl<$Res>
 class _$_DiseaseModel implements _DiseaseModel {
   const _$_DiseaseModel(
       {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "disease_name") required this.diseaseName});
+      @JsonKey(name: "disease_name") required this.diseaseName,
+      @JsonKey(name: "image") required this.image});
 
   factory _$_DiseaseModel.fromJson(Map<String, dynamic> json) =>
       _$$_DiseaseModelFromJson(json);
@@ -144,10 +161,13 @@ class _$_DiseaseModel implements _DiseaseModel {
   @override
   @JsonKey(name: "disease_name")
   final String diseaseName;
+  @override
+  @JsonKey(name: "image")
+  final String image;
 
   @override
   String toString() {
-    return 'DiseaseModel(id: $id, diseaseName: $diseaseName)';
+    return 'DiseaseModel(id: $id, diseaseName: $diseaseName, image: $image)';
   }
 
   @override
@@ -157,14 +177,16 @@ class _$_DiseaseModel implements _DiseaseModel {
             other is _DiseaseModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
-                .equals(other.diseaseName, diseaseName));
+                .equals(other.diseaseName, diseaseName) &&
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(diseaseName));
+      const DeepCollectionEquality().hash(diseaseName),
+      const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
@@ -179,9 +201,9 @@ class _$_DiseaseModel implements _DiseaseModel {
 
 abstract class _DiseaseModel implements DiseaseModel {
   const factory _DiseaseModel(
-          {@JsonKey(name: "id") required int id,
-          @JsonKey(name: "disease_name") required String diseaseName}) =
-      _$_DiseaseModel;
+      {@JsonKey(name: "id") required int id,
+      @JsonKey(name: "disease_name") required String diseaseName,
+      @JsonKey(name: "image") required String image}) = _$_DiseaseModel;
 
   factory _DiseaseModel.fromJson(Map<String, dynamic> json) =
       _$_DiseaseModel.fromJson;
@@ -192,6 +214,9 @@ abstract class _DiseaseModel implements DiseaseModel {
   @override
   @JsonKey(name: "disease_name")
   String get diseaseName;
+  @override
+  @JsonKey(name: "image")
+  String get image;
   @override
   @JsonKey(ignore: true)
   _$DiseaseModelCopyWith<_DiseaseModel> get copyWith =>

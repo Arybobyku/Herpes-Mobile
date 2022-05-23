@@ -13,6 +13,7 @@ import 'package:herpes_identification/ui/home/widget/home_news_section.dart';
 import 'package:herpes_identification/injection.dart';
 import 'package:herpes_identification/provider/home/home_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -76,5 +77,30 @@ class HomePage extends StatelessWidget {
 
   _doPhoto() async {
     Get.toNamed(Routes.cameraScreen);
+  }
+
+  showDialog(BuildContext context){
+    Alert(
+      context: context,
+      type: AlertType.success,
+      title: "Data Diri Anda",
+      desc: "Harap isi data diri anda terlebih dahulu",
+      buttons: [
+        DialogButton(
+          child: const Text(
+            "Simpan",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: (){
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
+          gradient: const LinearGradient(colors: [
+            Color.fromRGBO(116, 116, 191, 1.0),
+            Color.fromRGBO(52, 138, 199, 1.0)
+          ]),
+        )
+      ],
+    ).show();
   }
 }
