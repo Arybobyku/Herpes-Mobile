@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
+import 'package:herpes_identification/data/constants/constants.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
+import 'package:herpes_identification/locatore_storage_service.dart';
 import 'package:herpes_identification/routes.dart';
+import 'package:herpes_identification/setup_locator.dart';
 import 'package:herpes_identification/ui/core/custom_profile_card/custom_profile_card.dart';
 import 'package:herpes_identification/ui/home/widget/home_activity_section.dart';
 import 'package:herpes_identification/ui/home/widget/home_identification_section.dart';
@@ -21,6 +24,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _refreshController = RefreshController();
+
     return Scaffold(
       backgroundColor: ColorPalette.generalBackgroundColor,
       floatingActionButton: Container(
@@ -43,7 +47,6 @@ class HomePage extends StatelessWidget {
             (r){
               _refreshController.refreshCompleted();
               _refreshController.loadComplete();
-              print("FINISH");
             },
           ),
           () => _refreshController.refreshFailed(),
@@ -79,28 +82,4 @@ class HomePage extends StatelessWidget {
     Get.toNamed(Routes.cameraScreen);
   }
 
-  showDialog(BuildContext context){
-    Alert(
-      context: context,
-      type: AlertType.success,
-      title: "Data Diri Anda",
-      desc: "Harap isi data diri anda terlebih dahulu",
-      buttons: [
-        DialogButton(
-          child: const Text(
-            "Simpan",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: (){
-            Navigator.pop(context);
-            Navigator.pop(context);
-          },
-          gradient: const LinearGradient(colors: [
-            Color.fromRGBO(116, 116, 191, 1.0),
-            Color.fromRGBO(52, 138, 199, 1.0)
-          ]),
-        )
-      ],
-    ).show();
-  }
 }

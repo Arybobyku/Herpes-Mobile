@@ -7,6 +7,7 @@ import 'package:herpes_identification/ui/history/history_page.dart';
 import 'package:herpes_identification/ui/home/home_page.dart';
 import 'package:herpes_identification/ui/image/image_detection_page.dart';
 import 'package:herpes_identification/ui/information/information_page.dart';
+import 'package:herpes_identification/ui/insertProfile/insert_profile_page.dart';
 import 'package:herpes_identification/ui/landing/landing_page.dart';
 import 'package:herpes_identification/ui/navigator/navigator_page.dart';
 import 'package:herpes_identification/ui/onBoarding/on_boarding_page.dart';
@@ -31,6 +32,7 @@ class Routes {
   static const String webViewPage = "/webViewPage";
   static const String onBoardingPage = "/onBoardingPage";
   static const String resultPage = "/resultPage";
+  static const String insertProfilePage = "/insertProfilePage";
 
   static final newRoutes = <GetPage>[
     GetPage(name: navigator, page:(){return const NavigatorPage();}),
@@ -47,5 +49,6 @@ class Routes {
     GetPage(name: webViewPage, page:(){return const WebViewPage();}),
     GetPage(name: onBoardingPage, page:(){return const OnBoardingPage();}),
     GetPage(name: resultPage, page:(){return const ResultPage();}),
+    GetPage(name: insertProfilePage, page:(){return const InsertProfilePage();}),
   ];
 }

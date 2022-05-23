@@ -45,18 +45,20 @@ class ResultPage extends StatelessWidget {
           ),
           body: BlocBuilder<CbrAndRbrBloc, CbrAndRbrState>(
             builder: (context, state) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 20),
-                  ResultHeaderSection(caseModel: state.caseModel,result: state.result),
-                  const SizedBox(height: 20),
-                  ResultSymptomSection(caseModel: state.caseModel),
-                  const SizedBox(height: 20),
-                  ResultSolutionSection(caseModel: state.caseModel),
-                  const SizedBox(height: 20),
-                  // const ResultCalculatedSection(),
-                  ],
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    ResultHeaderSection(caseModel: state.caseModel,result: state.result),
+                    const SizedBox(height: 20),
+                    ResultSymptomSection(caseModel: state.caseModel),
+                    const SizedBox(height: 20),
+                    ResultSolutionSection(caseModel: state.caseModel),
+                    const SizedBox(height: 20),
+                    // const ResultCalculatedSection(),
+                    ],
+                ),
               );
             },
           ),

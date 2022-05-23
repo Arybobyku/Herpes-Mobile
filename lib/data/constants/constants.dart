@@ -1,5 +1,5 @@
 class Constants{
-  static const String domain = "192.168.100.222";
+  static const String domain = "192.168.1.23";
   static const String apiBaseUrl = "http://$domain/herpesBE/public";
   static const String apiNewsBaseUrl = "https://newsapi.org/v2/";
   static const String headerContentTypeText = 'Content-Type';
@@ -11,4 +11,6 @@ class Constants{
 
 
   static const String history = 'History';
+  static const String userName = 'userName';
+  static const String userAge = 'userAge';
 }

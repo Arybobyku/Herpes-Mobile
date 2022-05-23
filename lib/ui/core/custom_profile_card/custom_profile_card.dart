@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:herpes_identification/data/constants/constants.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
+import 'package:herpes_identification/locatore_storage_service.dart';
+import 'package:herpes_identification/setup_locator.dart';
 
 class CustomProfileCard extends StatelessWidget {
   const CustomProfileCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var storageService = locator<LocalStorageService>();
+    var name = storageService.getStringFromPref(Constants.userName)??"User";
+    var age = storageService.getStringFromPref(Constants.userAge)??"-";
+
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Row(
@@ -47,18 +54,18 @@ class CustomProfileCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children:  [
                 Text(
-                  "Hello, Boby",
-                  style: TextStyle(
+                  "Hello, $name",
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                     color: ColorPalette.generalSecondaryColor,
                   ),
                 ),
                 Text(
-                  "21 Tahun",
-                  style: TextStyle(
+                  "$age Tahun",
+                  style: const TextStyle(
                     fontSize: 18,
                   ),
                 ),

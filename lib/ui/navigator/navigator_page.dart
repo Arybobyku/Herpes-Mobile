@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:herpes_identification/data/constants/constants.dart';
 import 'package:herpes_identification/helper/color_pallete.dart';
+import 'package:herpes_identification/locatore_storage_service.dart';
 import 'package:herpes_identification/routes.dart';
+import 'package:herpes_identification/setup_locator.dart';
 import 'package:lottie/lottie.dart';
 
 class NavigatorPage extends StatefulWidget {
@@ -46,8 +49,18 @@ class _NavigatorPageState extends State<NavigatorPage> {
   }
 
   navigated(BuildContext context) async {
+
+    var storageService = locator<LocalStorageService>();
+    var name = storageService.getStringList(Constants.userName);
+
     await Future.delayed(const Duration(seconds: 5), () async {
-      Get.offAllNamed(Routes.landing);
+      if(name==null){
+        Get.offAllNamed(Routes.insertProfilePage);
+      }else{
+        Get.offAllNamed(Routes.landing);
+      }
+
     });
+
   }
 }
