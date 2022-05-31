@@ -78,13 +78,13 @@ dev_dependencies:
     sdk: flutter
   mobx_codegen:
   build_runner:
+  hive_generator:
   chopper_generator:
   json_serializable:
   freezed: ^1.0.2
   injectable_generator: ^1.5.2
   lint:
   logger:
-  hive_generator:
 
 
   # The "flutter_lints" package below contains a set of recommended lints to

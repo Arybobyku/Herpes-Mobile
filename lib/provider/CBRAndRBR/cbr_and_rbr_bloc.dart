@@ -47,7 +47,6 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
             var similarityLocal = 0;
             double similarityGlobal = 0.0;
             var symptomWeight = 0;
-            double symptomAppears = 0;
 
             e.symptoms
                 .where((element) => element.isSelect == true)
@@ -55,6 +54,8 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
 
             ///calculated rbr
             bool isRbr = false;
+            //this variable used for compare high symptom appears for each case
+            int rbrCheckHighCounterSymptom = 0;
             for (int i = 0; i < cases.length; i++) {
               int caseSymptomLength = cases[i].caseDetails.length;
               int counterSameSymptom = 0;
@@ -66,12 +67,13 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
                   }
                 }
               }
-              if (caseSymptomLength == counterSameSymptom) {
+              if (caseSymptomLength == counterSameSymptom && (counterSameSymptom>rbrCheckHighCounterSymptom)) {
                 prediction = cases[i];
                 previousSimilarityGlobal = 1 * cases[i].confidenceLevel;
                 isRbr = true;
+                rbrCheckHighCounterSymptom = counterSameSymptom;
                 print("BOB all rbr rules fulfilled");
-                break;
+                // break;
               }
             }
 
@@ -83,37 +85,38 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
                     if (cases[i].caseDetails[j].sympthons.id ==
                         userSymptoms[k].id) {
                       similarityLocal += cases[i].caseDetails[j].weight * 1;
-                      symptomAppears += 1;
                     }
                   }
                   symptomWeight += cases[i].caseDetails[j].weight;
                 }
 
                 similarityGlobal = similarityLocal / symptomWeight;
-                symptomAppears = symptomAppears / cases[i].caseDetails.length;
-                similarityGlobal *= symptomAppears;
+                similarityGlobal *=cases[i].confidenceLevel;
 
-                print("BOB symptomAppears ${symptomAppears}");
                 print("BOB similarityGlobal ${similarityGlobal}");
                 print("BOB symptomWeight ${symptomWeight}");
                 print("BOB similarityLocal ${similarityLocal}");
-                print("BOB symptomAppears ${symptomAppears}");
                 if (similarityGlobal > previousSimilarityGlobal) {
                   prediction = cases[i];
                   previousSimilarityGlobal = await similarityGlobal;
 
                   print(
                       "BOB previousSimilarityGlobal ${previousSimilarityGlobal}");
+                  // multiplied with confidence level
                 }
-                // multiplied with confidence level
-                previousSimilarityGlobal *= cases[i].confidenceLevel;
-                symptomAppears = 0;
+
                 print(
                     "\n\n-----------------------------------------------------\n\n");
+                //reset
+                similarityGlobal = 0;
+                symptomWeight = 0;
+                similarityLocal = 0;
               }
               print("BOB outside ${previousSimilarityGlobal}");
               print("BOB case id ${prediction.id}");
             }
+
+
           },
         ).whenComplete(() {
           ///save result to state
