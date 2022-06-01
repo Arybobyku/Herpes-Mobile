@@ -61,8 +61,7 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
               int counterSameSymptom = 0;
               for (int j = 0; j < cases[i].caseDetails.length; j++) {
                 for (int k = 0; k < userSymptoms.length; k++) {
-                  if (cases[i].caseDetails[j].sympthons.id ==
-                      userSymptoms[k].id) {
+                  if (cases[i].caseDetails[j].sympthons.id == userSymptoms[k].id) {
                     counterSameSymptom++;
                   }
                 }
@@ -82,12 +81,12 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
               for (int i = 0; i < cases.length; i++) {
                 for (int j = 0; j < cases[i].caseDetails.length; j++) {
                   for (int k = 0; k < userSymptoms.length; k++) {
-                    if (cases[i].caseDetails[j].sympthons.id ==
-                        userSymptoms[k].id) {
+                    if (cases[i].caseDetails[j].sympthons.id == userSymptoms[k].id) {
                       similarityLocal += cases[i].caseDetails[j].weight * 1;
                     }
                   }
                   symptomWeight += cases[i].caseDetails[j].weight;
+                  print("Nama Gejala ${cases[i].caseDetails[j].sympthons.name} ${cases[i].caseDetails[j].weight}");
                 }
 
                 similarityGlobal = similarityLocal / symptomWeight;
@@ -102,7 +101,6 @@ class CbrAndRbrBloc extends Bloc<CbrAndRbrEvent, CbrAndRbrState> {
 
                   print(
                       "BOB previousSimilarityGlobal ${previousSimilarityGlobal}");
-                  // multiplied with confidence level
                 }
 
                 print(
