@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:herpes_identification/ui/Result/result_page.dart';
+import 'package:herpes_identification/ui/UjiProgram/uji_program.dart';
 import 'package:herpes_identification/ui/customCamera/camera.dart';
 import 'package:herpes_identification/ui/customCamera/preview.dart';
 import 'package:herpes_identification/ui/herpes_information/herpes_information_page.dart';
@@ -33,6 +34,7 @@ class Routes {
   static const String onBoardingPage = "/onBoardingPage";
   static const String resultPage = "/resultPage";
   static const String insertProfilePage = "/insertProfilePage";
+  static const String ujiProgram = "/ujiProgram";
 
   static final newRoutes = <GetPage>[
     GetPage(name: navigator, page:(){return const NavigatorPage();}),
@@ -50,5 +52,6 @@ class Routes {
     GetPage(name: onBoardingPage, page:(){return const OnBoardingPage();}),
     GetPage(name: resultPage, page:(){return const ResultPage();}),
     GetPage(name: insertProfilePage, page:(){return const InsertProfilePage();}),
+    GetPage(name: ujiProgram, page:(){return const UjiProgram();}),
   ];
 }

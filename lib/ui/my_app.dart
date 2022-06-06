@@ -42,10 +42,10 @@ class MyApp extends StatelessWidget {
         BlocProvider<DiseaseBloc>(
           create: (context) => getIt<DiseaseBloc>()..add(DiseaseEvent.watchAll(context)),
         ),
-        // BlocProvider<ArticleBloc>(
-        //   create: (context) =>
-        //   getIt<ArticleBloc>()..add(ArticleEvent.watch(context))
-        // ),
+        BlocProvider<ArticleBloc>(
+          create: (context) =>
+          getIt<ArticleBloc>()..add(ArticleEvent.watch(context))
+        ),
       ],
       child: GetMaterialApp(
         navigatorKey: Get.key,

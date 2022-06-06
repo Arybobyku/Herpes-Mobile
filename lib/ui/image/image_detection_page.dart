@@ -77,7 +77,10 @@ class _ImageDetectionState extends State<ImageDetection> {
         ),
         body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
-             CaseModel? caseModel = state.listCase.firstWhere((element) => element.disease.id==1);
+            CaseModel? caseModel;
+            if(_name!="Normal"){
+            caseModel = state.listCase.firstWhere((element) => element.disease.id==1);
+            }
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

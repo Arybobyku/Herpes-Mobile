@@ -41,6 +41,15 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
+
+              GestureDetector(
+                onTap: (){
+                  Get.toNamed(Routes.ujiProgram);
+                },
+                child: Container(
+                  child: Text("Uji Program"),
+                ),
+              ),
             ],
           )),
     );
