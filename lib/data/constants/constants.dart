@@ -1,7 +1,7 @@
 class Constants{
   static const String domain = "192.168.43.106";
   // static const String apiBaseUrl = "http://$domain/herpesBE/public";
-  static const String apiBaseUrl = "http://dev.herpes.my.id";
+  static const String apiBaseUrl = "https://dev.herpes.my.id";
   static const String apiNewsBaseUrl = "https://newsapi.org/v2/";
   static const String headerContentTypeText = 'Content-Type';
   static const String headerAcceptText = 'Accept';

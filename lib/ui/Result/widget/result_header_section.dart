@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:herpes_identification/data/constants/constants.dart';
 import 'package:herpes_identification/data/model/case/case_model.dart';
 
 class ResultHeaderSection extends StatelessWidget {
@@ -8,6 +9,7 @@ class ResultHeaderSection extends StatelessWidget {
   final double result;
   @override
   Widget build(BuildContext context) {
+    print("${Constants.apiBaseUrl}/${caseModel.disease.image}");
     return Column(
       children: [
         const Center(
@@ -33,6 +35,19 @@ class ResultHeaderSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                height: 150,
+                decoration:  BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage("${Constants.apiBaseUrl}/${caseModel.disease.image}"),
+                  ),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,

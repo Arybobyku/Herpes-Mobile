@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:herpes_identification/ui/core/customLoadingImage/custom_loading_image.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewPage extends StatefulWidget {
   const WebViewPage({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class WebViewPage extends StatefulWidget {
 }
 
 class _WebViewPageState extends State<WebViewPage> {
-  late WebViewController controller;
+  // late WebViewController controller;
   bool isLoading  = true;
   String url = Get.arguments;
   @override
@@ -24,29 +24,30 @@ class _WebViewPageState extends State<WebViewPage> {
     return SafeArea(
       child: WillPopScope(
         onWillPop: ()async{
-          if(await controller.canGoBack()){
-            controller.goBack();
-            return false;
-          }else{
-            return true;
-          }
+          // if(await controller.canGoBack()){
+          //   controller.goBack();
+          //   return false;
+          // }else{
+          //   return true;
+          // }
+          return true;
         },
         child: Scaffold(
           body: Stack(
             children: [
-              WebView(
-                javascriptMode: JavascriptMode.unrestricted,
-                initialUrl: url,
-                onPageStarted: (String value){
-                  setState(() {
-                    isLoading = false;
-                  });
-                },
-                gestureNavigationEnabled: true,
-                onWebViewCreated: ( webViewController) {
-                  controller=webViewController;
-                },
-              ),
+              // WebView(
+              //   javascriptMode: JavascriptMode.unrestricted,
+              //   initialUrl: url,
+              //   onPageStarted: (String value){
+              //     setState(() {
+              //       isLoading = false;
+              //     });
+              //   },
+              //   gestureNavigationEnabled: true,
+              //   onWebViewCreated: ( webViewController) {
+              //     controller=webViewController;
+              //   },
+              // ),
               if(isLoading)
                 const Align(
                   alignment: Alignment.center,
